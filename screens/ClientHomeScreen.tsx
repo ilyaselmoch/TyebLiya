@@ -11,12 +11,15 @@ import {
   Animated,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { ScreenScrollView } from "@/components/ScreenScrollView";
 import { useAuth } from "@/context/AuthContext";
 import { Spacing, AppColors, BorderRadius } from "@/constants/theme";
+import { AppStackParamList } from "@/navigation/AppStackNavigator";
 
 // ============================================================================
 // MOCK DATA
@@ -260,6 +263,7 @@ export default function ClientHomeScreen() {
   const { user } = useAuth();
   const { width } = useWindowDimensions();
   const isMobile = width < 768;
+  const navigation = useNavigation<NativeStackNavigationProp<AppStackParamList>>();
 
   // Search state
   const [searchQuery, setSearchQuery] = useState("");
@@ -291,9 +295,10 @@ export default function ClientHomeScreen() {
     return [...filteredDishes].sort((a, b) => b.rating - a.rating);
   }, [filteredDishes]);
 
-  // Navigation handlers (placeholder)
+  // Navigation handlers
+  // When a dish card is clicked, navigate to DishDetail screen passing the dishId
   const handleDishPress = (dish: Dish) => {
-    console.log("Navigate to dish detail:", dish.id);
+    navigation.navigate("DishDetail", { dishId: dish.id });
   };
 
   const handleChefPress = (chef: Chef) => {

@@ -10,6 +10,13 @@ export const AppColors = {
   gray100: "#F5F5F5",
   gray300: "#D4D4D4",
   gray600: "#737373",
+  // Moroccan colors
+  terracotta: "#D96E48",
+  saffron: "#E6A500",
+  sandBeige: "#F3E7D3",
+  mintGreen: "#7CC9A2",
+  warmBrown: "#4A2E1F",
+  lightBeige: "#F8F1E7",
 };
 
 export const Colors = {

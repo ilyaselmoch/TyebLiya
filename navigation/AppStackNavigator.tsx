@@ -4,6 +4,7 @@ import ClientHomeScreen from "@/screens/ClientHomeScreen";
 import ChefDashboardScreen from "@/screens/ChefDashboardScreen";
 import RoleLoadingScreen from "@/screens/RoleLoadingScreen";
 import RoleSelectionScreen from "@/screens/RoleSelectionScreen";
+import DishDetailScreen from "@/screens/DishDetailScreen";
 import { HeaderTitle } from "@/components/HeaderTitle";
 import { useTheme } from "@/hooks/useTheme";
 import { getCommonScreenOptions } from "@/navigation/screenOptions";
@@ -14,6 +15,7 @@ export type AppStackParamList = {
   RoleSelection: undefined;
   ClientHome: undefined;
   ChefDashboard: undefined;
+  DishDetail: { dishId: string };
 };
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -75,6 +77,16 @@ export default function AppStackNavigator() {
         component={ChefDashboardScreen}
         options={{
           headerTitle: () => <HeaderTitle title="Tyeb Liya - Cuisinier" />,
+        }}
+      />
+
+      {/* Dish Detail Screen */}
+      <Stack.Screen
+        name="DishDetail"
+        component={DishDetailScreen}
+        options={{
+          headerTitle: () => <HeaderTitle title="Dish Details" />,
+          headerBackVisible: true,
         }}
       />
     </Stack.Navigator>
