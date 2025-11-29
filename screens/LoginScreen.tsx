@@ -34,7 +34,7 @@ type LoginScreenProps = {
 export default function LoginScreen({ navigation }: LoginScreenProps) {
   const insets = useSafeAreaInsets();
   const { theme, isDark } = useTheme();
-  const { signIn, isLoading, error, clearError } = useAuth();
+  const { signIn, isLoading, error, clearError, isConfigured } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -104,6 +104,19 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
           <ThemedText style={styles.tagline} type="small">
             Bienvenue
           </ThemedText>
+          {!isConfigured ? (
+            <View
+              style={[
+                styles.demoBadge,
+                { backgroundColor: AppColors.secondary },
+              ]}
+            >
+              <Feather name="info" size={12} color={AppColors.primary} />
+              <ThemedText style={styles.demoText} type="small">
+                Mode démo
+              </ThemedText>
+            </View>
+          ) : null}
         </View>
 
         <View style={styles.formContainer}>
@@ -238,6 +251,20 @@ const styles = StyleSheet.create({
   },
   tagline: {
     opacity: 0.7,
+  },
+  demoBadge: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: Spacing.sm,
+    paddingVertical: Spacing.xs,
+    borderRadius: BorderRadius.lg,
+    marginTop: Spacing.sm,
+    gap: 4,
+  },
+  demoText: {
+    fontSize: 12,
+    color: AppColors.primary,
+    fontWeight: "500",
   },
   formContainer: {
     width: "100%",

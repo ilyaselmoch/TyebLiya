@@ -1,4 +1,4 @@
-import { supabase, isSupabaseConfigured } from "./supabase";
+import { getSupabase, isSupabaseConfigured } from "./supabase";
 import { AuthError, Session, User } from "@supabase/supabase-js";
 
 export interface Profile {
@@ -19,7 +19,9 @@ export async function signInWithEmail(
   email: string,
   password: string
 ): Promise<AuthResult> {
-  if (!isSupabaseConfigured()) {
+  const supabase = getSupabase();
+  
+  if (!supabase) {
     return {
       success: false,
       error: "Supabase n'est pas configuré. Veuillez ajouter les clés API.",
@@ -57,7 +59,9 @@ export async function signUpWithEmail(
   password: string,
   pseudo: string
 ): Promise<AuthResult> {
-  if (!isSupabaseConfigured()) {
+  const supabase = getSupabase();
+  
+  if (!supabase) {
     return {
       success: false,
       error: "Supabase n'est pas configuré. Veuillez ajouter les clés API.",
@@ -100,7 +104,9 @@ export async function signUpWithEmail(
 }
 
 export async function signOut(): Promise<AuthResult> {
-  if (!isSupabaseConfigured()) {
+  const supabase = getSupabase();
+  
+  if (!supabase) {
     return { success: true };
   }
 
@@ -124,7 +130,9 @@ export async function signOut(): Promise<AuthResult> {
 }
 
 export async function getCurrentSession(): Promise<Session | null> {
-  if (!isSupabaseConfigured()) {
+  const supabase = getSupabase();
+  
+  if (!supabase) {
     return null;
   }
 
@@ -137,7 +145,9 @@ export async function getCurrentSession(): Promise<Session | null> {
 }
 
 export async function getCurrentUser(): Promise<User | null> {
-  if (!isSupabaseConfigured()) {
+  const supabase = getSupabase();
+  
+  if (!supabase) {
     return null;
   }
 
@@ -150,7 +160,9 @@ export async function getCurrentUser(): Promise<User | null> {
 }
 
 export async function getProfile(userId: string): Promise<Profile | null> {
-  if (!isSupabaseConfigured()) {
+  const supabase = getSupabase();
+  
+  if (!supabase) {
     return null;
   }
 
@@ -176,6 +188,12 @@ async function createProfile(
   pseudo: string,
   email: string
 ): Promise<void> {
+  const supabase = getSupabase();
+  
+  if (!supabase) {
+    return;
+  }
+
   try {
     await supabase.from("profiles").insert({
       id: userId,
@@ -206,7 +224,9 @@ function translateAuthError(error: AuthError): string {
 export function onAuthStateChange(
   callback: (session: Session | null) => void
 ): () => void {
-  if (!isSupabaseConfigured()) {
+  const supabase = getSupabase();
+  
+  if (!supabase) {
     return () => {};
   }
 
