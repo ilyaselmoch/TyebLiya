@@ -1,0 +1,56 @@
+Modify the Client Home screen for TyebLiya to improve aesthetics and make it modern and visually appealing. Key instructions:
+
+1. **Overall Layout Improvements**:
+   - Add **more padding and spacing** around sections and cards
+   - Use **rounded corners and subtle shadows** for all cards
+   - Add a **soft background color or gradient** for each section to separate them visually
+   - Make the screen **fully responsive**: adjust card sizes for mobile, tablet, and desktop
+
+2. **Search Bar & Filters**:
+   - Rounded input with subtle shadow
+   - Add **icon inside the search bar** (magnifying glass)
+   - Filter buttons should have **rounded pill shapes, hover effects, and color changes when selected**
+   - Add spacing between filter rows
+   - Optional: subtle divider between search/filters and sections
+
+3. **Section Headers**:
+   - Bold titles, slightly larger font
+   - Add small **divider line or underline** under section titles
+   - Add “See All →” link aligned to the right in **secondary color**
+   - Optional: subtle icon next to section title (like a star for “Top Dish”)
+
+4. **Dish Cards (Sections 1 & 2)**:
+   - Rounded corners, soft shadow
+   - Include **dish photo as main visual** at the top
+   - Dish name: bold, readable font
+   - Chef info: profile photo + name below dish name
+   - Rating: star icons with subtle color and spacing
+   - Add **hover effect**: lift card slightly, shadow intensifies
+
+5. **Chef Cards (Section 3)**:
+   - Circle profile photo at top
+   - Name bold, centered
+   - Rating stars below name
+   - Soft background color or shadow for card
+   - Add hover effect: lift or highlight card
+
+6. **Horizontal Scroll Styling**:
+   - Smooth scrolling with padding on edges
+   - Show part of next card to hint scrolling
+   - Optional: subtle scrollbar styling
+
+7. **Typography & Colors**:
+   - Use a **modern, readable font** (like Inter, Poppins, or Nunito)
+   - Color palette: neutral background (#f9f9f9), accent color for buttons (#FF6B6B or #FFA500), secondary color for links (#555)
+   - Ratings stars: gold/yellow
+   - Section headers: dark gray
+
+8. **Miscellaneous**:
+   - Ensure consistent spacing between sections
+   - Add subtle animations for card hover or scroll
+   - Keep code clean and comment sections: search, filters, dish cards, chef cards, horizontal scroll
+
+9. **React & TailwindCSS**:
+   - Use functional components + hooks
+   - Implement all styling with TailwindCSS classes
+   - Prepare code for easy replacement of mock data with Supabase data later
