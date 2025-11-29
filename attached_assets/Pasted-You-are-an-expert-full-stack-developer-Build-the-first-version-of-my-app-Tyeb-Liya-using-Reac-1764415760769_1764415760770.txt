@@ -1,0 +1,142 @@
+You are an expert full-stack developer. Build the first version of my app **Tyeb Liya** using **React (Vite)** and **Supabase**.
+
+🎯 GOAL  
+Create ONLY the first module of the app: **Authentication page** (Login + Register) using **Supabase Auth** with email + password + Google login.
+
+📌 TECHNOLOGIES  
+- Frontend: React + Vite + TailwindCSS  
+- Backend: Supabase (user auth + database)  
+- No Firebase  
+- No backend server, everything through Supabase client  
+- Clean folder structure  
+- Responsive design  
+- Beautiful UI (modern, rounded, Moroccan style colors)
+
+---
+
+# 🚀 FEATURES TO BUILD NOW
+
+## 1. LOGIN PAGE
+Elements:
+- App logo "Tyeb Liya"
+- Email input  
+- Password input  
+- Button "Se connecter"  
+- Button "Créer un compte"  
+- Divider: "ou"  
+- Google Login button  
+- Error messages  
+- Success messages  
+- Loading state on button  
+
+Functionality:
+- Login user with supabase.auth.signInWithPassword()
+- Redirect to "Home" page after login
+
+---
+
+## 2. REGISTER PAGE
+Elements:
+- Username input (pseudo)
+- Email input  
+- Password input  
+- Button "Créer mon compte"
+- Button "Déjà un compte ? Se connecter"
+- Error messages
+
+Functionality:
+- Create user with supabase.auth.signUp()
+- Save extra field "pseudo" to a table "profiles" in Supabase
+
+Include:
+- profiles table with columns:
+  - id (uuid, PK)
+  - pseudo (text)
+  - email (text)
+  - created_at (timestamp)
+
+After registration → redirect to Login page.
+
+---
+
+## 3. SUPABASE SETUP
+Generate:
+- supabaseClient.js configured with:
+  - SUPABASE_URL
+  - SUPABASE_ANON_KEY
+
+Place inside:
+src/lib/supabaseClient.js
+
+---
+
+## 4. ROUTING
+Use react-router-dom.
+
+Pages:
+- /login
+- /register
+- /home (empty placeholder for now)
+
+Protect /home so only logged users can access it.
+
+---
+
+## 5. FILE STRUCTURE (MANDATORY)
+Create EXACTLY this structure:
+
+src/
+  components/
+    Input.js
+    Button.js
+  pages/
+    Login.jsx
+    Register.jsx
+    Home.jsx
+  lib/
+    supabaseClient.js
+  App.jsx
+  main.jsx
+  styles.css
+
+---
+
+# 6. DESIGN REQUIREMENTS
+Use TailwindCSS.
+
+Colors (simple palette):
+- #FF6B35 (orange)
+- #F7C6A3 (light beige)
+- #252525 (black)
+- #FFFFFF (white)
+
+Style:
+- Rounded elements (rounded-xl)
+- Shadows
+- Clean modern UI
+- Centered layout
+- Mobile-first
+
+---
+
+# 7. YOUR OUTPUT MUST INCLUDE
+- Creation of all required files  
+- Full code for each file  
+- Installation commands  
+- Supabase SQL needed to create profiles table  
+- Clear instructions on where to paste Supabase keys  
+- Explanations step-by-step  
+
+---
+
+# ⚠️ IMPORTANT
+Reply ONLY with:
+1. The file tree  
+2. Code for each file  
+3. All setup steps  
+4. No extra explanations  
+5. No missing code  
+
+---
+
+Build everything now.
