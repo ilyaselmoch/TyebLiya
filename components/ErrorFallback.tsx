@@ -12,7 +12,7 @@ import { Feather } from "@expo/vector-icons";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import { useTheme } from "@/hooks/useTheme";
-import { Spacing, BorderRadius, Fonts } from "@/constants/theme";
+import { Spacing, BorderRadius, Fonts, AppColors } from "@/constants/theme";
 
 export type ErrorFallbackProps = {
   error: Error;
@@ -58,12 +58,21 @@ export function ErrorFallback({ error, resetError }: ErrorFallbackProps) {
       ) : null}
 
       <View style={styles.content}>
-        <ThemedText type="h1" style={styles.title}>
-          Something went wrong
+        <View
+          style={[
+            styles.iconContainer,
+            { backgroundColor: AppColors.secondary },
+          ]}
+        >
+          <Feather name="alert-triangle" size={48} color={AppColors.primary} />
+        </View>
+
+        <ThemedText type="h2" style={styles.title}>
+          Oups !
         </ThemedText>
 
         <ThemedText type="body" style={styles.message}>
-          Please reload the app to continue.
+          Tyeb Liya a rencontré un problème. Veuillez relancer l'application.
         </ThemedText>
 
         <Pressable
@@ -71,17 +80,23 @@ export function ErrorFallback({ error, resetError }: ErrorFallbackProps) {
           style={({ pressed }) => [
             styles.button,
             {
-              backgroundColor: theme.link,
+              backgroundColor: AppColors.primary,
               opacity: pressed ? 0.9 : 1,
               transform: [{ scale: pressed ? 0.98 : 1 }],
             },
           ]}
         >
+          <Feather
+            name="refresh-cw"
+            size={18}
+            color={AppColors.white}
+            style={styles.buttonIcon}
+          />
           <ThemedText
             type="body"
-            style={[styles.buttonText, { color: theme.buttonText }]}
+            style={[styles.buttonText, { color: AppColors.white }]}
           >
-            Try Again
+            Relancer Tyeb Liya
           </ThemedText>
         </Pressable>
       </View>
@@ -96,8 +111,8 @@ export function ErrorFallback({ error, resetError }: ErrorFallbackProps) {
           <View style={styles.modalOverlay}>
             <ThemedView style={styles.modalContainer}>
               <View style={styles.modalHeader}>
-                <ThemedText type="h2" style={styles.modalTitle}>
-                  Error Details
+                <ThemedText type="h3" style={styles.modalTitle}>
+                  Détails de l'erreur
                 </ThemedText>
                 <Pressable
                   onPress={() => setIsModalVisible(false)}
@@ -155,18 +170,25 @@ const styles = StyleSheet.create({
   content: {
     alignItems: "center",
     justifyContent: "center",
-    gap: Spacing.lg,
+    gap: Spacing.md,
     width: "100%",
-    maxWidth: 600,
+    maxWidth: 400,
+  },
+  iconContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: BorderRadius.lg,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: Spacing.md,
   },
   title: {
     textAlign: "center",
-    lineHeight: 40,
   },
   message: {
     textAlign: "center",
     opacity: 0.7,
-    lineHeight: 24,
+    paddingHorizontal: Spacing.lg,
   },
   topButton: {
     position: "absolute",
@@ -174,25 +196,24 @@ const styles = StyleSheet.create({
     right: Spacing.lg,
     width: 44,
     height: 44,
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.sm,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     zIndex: 10,
   },
   button: {
-    paddingVertical: Spacing.lg,
-    borderRadius: BorderRadius.md,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    height: Spacing.buttonHeight,
+    borderRadius: BorderRadius.sm,
     paddingHorizontal: Spacing["2xl"],
     minWidth: 200,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    marginTop: Spacing.lg,
+  },
+  buttonIcon: {
+    marginRight: Spacing.sm,
   },
   buttonText: {
     fontWeight: "600",
@@ -234,7 +255,7 @@ const styles = StyleSheet.create({
   },
   errorContainer: {
     width: "100%",
-    borderRadius: BorderRadius.md,
+    borderRadius: BorderRadius.sm,
     overflow: "hidden",
     padding: Spacing.lg,
   },
