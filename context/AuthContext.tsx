@@ -91,6 +91,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const profile = await getProfile(supabaseUser.id);
       
       // Fetch the user's role from the "users" table
+      // If role is null, user will be shown RoleSelectionScreen
       const role = await getUserRole(supabaseUser.id);
       
       setUser({

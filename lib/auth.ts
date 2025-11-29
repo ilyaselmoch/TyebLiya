@@ -216,6 +216,36 @@ export async function getUserRole(userId: string): Promise<"client" | "cuisinier
   }
 }
 
+// Save user role to the "users" table
+// Creates a new row if user doesn't exist, updates if they do
+export async function saveUserRole(userId: string, role: "client" | "cuisinier"): Promise<boolean> {
+  const supabase = getSupabase();
+  
+  if (!supabase) {
+    return false;
+  }
+
+  try {
+    const { error } = await supabase
+      .from("users")
+      .upsert({
+        id: userId,
+        role: role,
+        created_at: new Date().toISOString(),
+      });
+
+    if (error) {
+      console.error("Error saving user role:", error);
+      return false;
+    }
+
+    return true;
+  } catch (err) {
+    console.error("Error saving user role:", err);
+    return false;
+  }
+}
+
 async function createProfile(
   userId: string,
   pseudo: string,
