@@ -7,10 +7,8 @@ import {
   Image,
   TextInput,
   useWindowDimensions,
-  Animated,
   Platform,
 } from "react-native";
-import Svg, { Path, Defs, LinearGradient, Stop } from "react-native-svg";
 import { Feather } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -133,99 +131,22 @@ const mockChefs: Chef[] = [
 ];
 
 // ============================================================================
-// MOROCCAN ARCH SVG COMPONENT
+// SIMPLE SQUARE IMAGE COMPONENT
 // ============================================================================
 
-const MoroccanArchHeader: React.FC<{ imageUrl: string; width: number }> = ({
+const DishImageSquare: React.FC<{ imageUrl: string; width: number }> = ({
   imageUrl,
   width,
 }) => {
-  const archHeight = 320;
-  const topMargin = 16;
-
-  // SVG path for soft Moroccan arch
-  const archPath = `M ${Spacing.md} 0 
-    Q ${width / 2} ${archHeight * 0.1} ${width - Spacing.md} 0
-    L ${width - Spacing.md} ${archHeight * 0.7}
-    Q ${width / 2} ${archHeight} ${Spacing.md} ${archHeight * 0.7}
-    Z`;
+  const imageSize = width - Spacing.md * 2;
 
   return (
-    <View style={{ position: "relative", marginVertical: topMargin }}>
-      {/* Background behind arch */}
-      <View
-        style={[
-          styles.archBackground,
-          { width: width - Spacing.md * 2, height: archHeight + 20 },
-        ]}
+    <View style={[styles.imageSquareContainer, { width: imageSize, height: imageSize }]}>
+      <Image
+        source={{ uri: imageUrl }}
+        style={StyleSheet.absoluteFill}
+        resizeMode="cover"
       />
-
-      {/* Arch SVG container */}
-      <View style={{ alignItems: "center", marginBottom: -1 }}>
-        <Svg
-          width={width - Spacing.md * 2}
-          height={archHeight + 40}
-          viewBox={`0 0 ${width - Spacing.md * 2} ${archHeight + 40}`}
-          style={{ overflow: "visible" }}
-        >
-          <Defs>
-            {/* Terracotta gradient border */}
-            <LinearGradient
-              id="archGradient"
-              x1="0%"
-              y1="0%"
-              x2="0%"
-              y2="100%"
-            >
-              <Stop offset="0%" stopColor="#E8A08A" stopOpacity="1" />
-              <Stop offset="100%" stopColor="#C85A3A" stopOpacity="1" />
-            </LinearGradient>
-
-            {/* Fade gradient for image overlay */}
-            <LinearGradient
-              id="fadeGradient"
-              x1="0%"
-              y1="0%"
-              x2="0%"
-              y2="100%"
-            >
-              <Stop offset="0%" stopColor="#FFFFFF" stopOpacity="0" />
-              <Stop offset="100%" stopColor="#F3E7D3" stopOpacity="0.6" />
-            </LinearGradient>
-          </Defs>
-
-          {/* Outer arch border with gradient */}
-          <Path
-            d={archPath}
-            fill="url(#archGradient)"
-            strokeWidth="0"
-          />
-
-          {/* Inner arch shadow for depth */}
-          <Path
-            d={archPath}
-            fill="rgba(0, 0, 0, 0.08)"
-            strokeWidth="0"
-            opacity="0.5"
-          />
-        </Svg>
-      </View>
-
-      {/* Image inside arch */}
-      <View
-        style={[
-          styles.archImageContainer,
-          { width: width - Spacing.md * 2, height: archHeight },
-        ]}
-      >
-        <Image
-          source={{ uri: imageUrl }}
-          style={StyleSheet.absoluteFill}
-          resizeMode="cover"
-        />
-        {/* Fade overlay at bottom */}
-        <View style={styles.archImageFade} />
-      </View>
     </View>
   );
 };
@@ -259,11 +180,13 @@ export default function DishDetailScreen({
   return (
     <ThemedView style={styles.container}>
       <ScreenScrollView>
-        {/* MOROCCAN ARCH HEADER */}
-        <MoroccanArchHeader
-          imageUrl={dish.dishPhoto}
-          width={width}
-        />
+        {/* DISH IMAGE SQUARE */}
+        <View style={styles.imageSection}>
+          <DishImageSquare
+            imageUrl={dish.dishPhoto}
+            width={width}
+          />
+        </View>
 
         {/* TITLE & RATING SECTION */}
         <View style={styles.titleSection}>
@@ -485,27 +408,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  // Arch Header
-  archBackground: {
-    position: "absolute",
-    top: 0,
-    left: Spacing.md,
-    backgroundColor: AppColors.sandBeige,
-    borderRadius: BorderRadius.lg,
+  // Dish Image Square
+  imageSection: {
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.lg,
   },
-  archImageContainer: {
-    position: "relative",
-    marginHorizontal: Spacing.md,
+  imageSquareContainer: {
     borderRadius: BorderRadius.lg,
     overflow: "hidden",
-  },
-  archImageFade: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: "40%",
-    backgroundColor: "rgba(243, 231, 211, 0.6)",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+    elevation: 4,
   },
 
   // Title Section
