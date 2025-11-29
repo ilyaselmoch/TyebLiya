@@ -16,6 +16,10 @@ externalPort = 3000
 localPort = 36189
 externalPort = 3002
 
+[[ports]]
+localPort = 41033
+externalPort = 3001
+
 [workflows]
 runButton = "Project"
 
@@ -88,3 +92,9 @@ value = "1"
 path = "/*"
 name = "expo-sfv-version"
 value = "0"
+
+[userenv]
+
+[userenv.shared]
+EXPO_PUBLIC_SUPABASE_URL = "https://mxdartykqmrnfukhqxte.supabase.co"
+EXPO_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im14ZGFydHlrcW1ybmZ1a2hxeHRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQyNzg1MTYsImV4cCI6MjA3OTg1NDUxNn0.n4nh9JbCipnlZWsOStVc97qtHXz-RadbydstZ2tmCzw"
