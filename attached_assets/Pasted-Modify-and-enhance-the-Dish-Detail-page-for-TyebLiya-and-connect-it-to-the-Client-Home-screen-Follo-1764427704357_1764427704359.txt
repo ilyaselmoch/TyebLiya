@@ -1,0 +1,111 @@
+Modify and enhance the Dish Detail page for TyebLiya and connect it to the Client Home screen. Follow these requirements:
+
+-----------------------------------------
+1. NAVIGATION FROM HOME → DISH DETAIL
+-----------------------------------------
+- When a dish card is clicked on the Client Home screen, navigate to a route like `/dish/:id`.
+- Pass the mock dish data (id, title, image, price, rating, time, chefId, etc.) to the detail page.
+- Ensure the Dish Detail page loads the correct dish information dynamically based on the clicked card.
+- Add comments explaining the data flow:
+  * dish card → onClick handler → navigate(`/dish/${id}`) → DishDetail reads the id → loads mock data.
+
+-----------------------------------------
+2. MOROCCAN ARCH HEADER (MODERN SOFT ARCH)
+-----------------------------------------
+- Replace the dish photo header with a large image inside a MODERN SOFT MOROCCAN ARCH shape.
+- Use an SVG clip-path or mask to create the soft arch shape.
+- Background behind arch: sand beige (#F3E7D3).
+- Add a subtle terracotta gradient border around the arch.
+- Add a soft drop shadow around the arch.
+- At the bottom of the image, add a fade gradient (transparent → warm beige) to improve readability.
+
+-----------------------------------------
+3. TITLE & RATING AREA
+-----------------------------------------
+Under the arch, display:
+- Dish name (large, bold, warm brown)
+- Price in terracotta (#D96E48), very clear
+- Gold saffron stars (#E6A500) + number of reviews
+- Preparation time text (“⏱ 45 minutes”)
+Spacing and typography should feel modern and premium.
+
+-----------------------------------------
+4. CHEF CARD (MOROCCAN STYLE)
+-----------------------------------------
+- Beige card (#F8F1E7), rounded corners (20px), soft shadow.
+- Chef photo circle with terracotta border.
+- Text: chef name (dark brown), chef rating stars, location in gray.
+- Add a mint green button: “View Chef Profile”.
+- Include small hover/tap interaction.
+- Load chef data using the chefId passed from the dish.
+
+-----------------------------------------
+5. DESCRIPTION SECTION
+-----------------------------------------
+- Title “Description” in terracotta.
+- Paragraph text in warm brown.
+- Add a thin saffron divider with subtle Moroccan geometric decorations on the ends.
+- Use clean spacing for readability.
+
+-----------------------------------------
+6. REVIEWS PREVIEW
+-----------------------------------------
+- Display 2–3 mock reviews:
+  - Small user photo
+  - Username
+  - Star rating
+  - Short comment
+  - Date in light gray
+- Add a saffron outline button: “See All Reviews”.
+
+-----------------------------------------
+7. ORDERING SECTION (STICKY BOTTOM AREA)
+-----------------------------------------
+- Add a sticky bottom panel with beige background and soft shadow.
+- Elements:
+  * Quantity selector (“– 1 +”) with mint green buttons.
+  * Notes textarea with terracotta border, rounded corners, placeholder:
+      “Add cooking notes (optional)…”
+  * Large button:
+      “Add to Cart — {price} MAD”
+    - Terracotta gradient background
+    - White text
+    - Rounded 20px radius
+    - Slight bounce animation on click
+- This panel must remain visible when scrolling.
+
+-----------------------------------------
+8. INTERACTION & EFFECTS
+-----------------------------------------
+- Animate the arch shadow slightly on scroll.
+- Smooth transitions for buttons (150ms).
+- Add a small “favorite heart” icon near the dish title (optional).
+- Ensure responsiveness on both desktop and mobile.
+
+-----------------------------------------
+9. STYLE GUIDELINES (MOROCCAN THEME)
+-----------------------------------------
+Use this warm Moroccan color palette:
+- Terracotta: #D96E48
+- Saffron gold: #E6A500
+- Sand beige: #F3E7D3
+- Mint green: #7CC9A2
+- Warm dark brown: #4A2E1F
+
+Keep everything consistent:
+- Rounded shapes
+- Warm tones
+- Clean typography
+- Light textures when appropriate
+- Subtle zellige-inspired background pattern at 5% opacity (optional)
+
+-----------------------------------------
+10. CODE ORGANIZATION
+-----------------------------------------
+- Use functional React components.
+- Use TailwindCSS classes for styling.
+- Add clear comments for:
+  * arch implementation
+  * chef card logic
+  * sticky order panel
+  * navigation and data passing
