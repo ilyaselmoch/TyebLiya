@@ -7,6 +7,8 @@ import {
   Pressable,
   Image,
   useWindowDimensions,
+  Modal,
+  Animated,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
@@ -262,6 +264,9 @@ export default function ClientHomeScreen() {
   // Search state
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Filter modal state
+  const [showFilterModal, setShowFilterModal] = useState(false);
+
   // Filter states
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [selectedDishType, setSelectedDishType] = useState<string | null>(null);
@@ -298,104 +303,153 @@ export default function ClientHomeScreen() {
   return (
     <ThemedView style={styles.container}>
       <ScreenScrollView>
-        {/* SEARCH BAR */}
+        {/* SEARCH BAR WITH FILTER BUTTON */}
         <View style={styles.searchContainer}>
-          <View style={styles.searchInputWrapper}>
-            <Feather
-              name="search"
-              size={18}
-              color={AppColors.gray600}
-              style={styles.searchIcon}
-            />
-            <TextInput
-              style={styles.searchInput}
-              placeholder="Rechercher un plat..."
-              placeholderTextColor={AppColors.gray600}
-              value={searchQuery}
-              onChangeText={setSearchQuery}
-            />
-            {searchQuery ? (
-              <Pressable onPress={() => setSearchQuery("")}>
-                <Feather name="x" size={18} color={AppColors.gray600} />
-              </Pressable>
-            ) : null}
+          <View style={styles.searchBarWrapper}>
+            {/* Search Input */}
+            <View style={styles.searchInputWrapper}>
+              <Feather
+                name="search"
+                size={16}
+                color={AppColors.gray600}
+                style={styles.searchIcon}
+              />
+              <TextInput
+                style={styles.searchInput}
+                placeholder="Search for a dish..."
+                placeholderTextColor={AppColors.gray600}
+                value={searchQuery}
+                onChangeText={setSearchQuery}
+              />
+              {searchQuery ? (
+                <Pressable onPress={() => setSearchQuery("")}>
+                  <Feather name="x" size={16} color={AppColors.gray600} />
+                </Pressable>
+              ) : null}
+            </View>
+
+            {/* Filter Button */}
+            <Pressable
+              style={[
+                styles.filterIconButton,
+                (selectedCity || selectedDishType) && styles.filterIconButtonActive,
+              ]}
+              onPress={() => setShowFilterModal(true)}
+            >
+              <Feather
+                name="sliders"
+                size={18}
+                color={
+                  selectedCity || selectedDishType
+                    ? AppColors.white
+                    : AppColors.gray600
+                }
+              />
+            </Pressable>
           </View>
         </View>
 
-        {/* FILTERS SECTION */}
-        <View style={styles.filtersSection}>
-          {/* City Filter */}
-          <View style={styles.filterGroup}>
-            <ThemedText style={styles.filterLabel} type="small">
-              Ville
-            </ThemedText>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              style={styles.filterScroll}
-            >
-              {CITIES.map((city) => (
-                <Pressable
-                  key={city}
-                  onPress={() =>
-                    setSelectedCity(selectedCity === city ? null : city)
-                  }
-                  style={[
-                    styles.filterButton,
-                    selectedCity === city && styles.filterButtonActive,
-                  ]}
-                >
-                  <ThemedText
-                    type="small"
-                    style={[
-                      styles.filterButtonText,
-                      selectedCity === city && styles.filterButtonTextActive,
-                    ]}
-                  >
-                    {city}
-                  </ThemedText>
+        {/* FILTER MODAL */}
+        <Modal
+          visible={showFilterModal}
+          transparent
+          animationType="fade"
+          onRequestClose={() => setShowFilterModal(false)}
+        >
+          <Pressable
+            style={styles.modalOverlay}
+            onPress={() => setShowFilterModal(false)}
+          >
+            <View style={styles.modalContent}>
+              <View style={styles.modalHeader}>
+                <ThemedText style={styles.modalTitle}>Filtres</ThemedText>
+                <Pressable onPress={() => setShowFilterModal(false)}>
+                  <Feather name="x" size={24} color={AppColors.dark} />
                 </Pressable>
-              ))}
-            </ScrollView>
-          </View>
+              </View>
 
-          {/* Dish Type Filter */}
-          <View style={styles.filterGroup}>
-            <ThemedText style={styles.filterLabel} type="small">
-              Type de plat
-            </ThemedText>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              style={styles.filterScroll}
-            >
-              {DISH_TYPES.map((type) => (
+              <ScrollView style={styles.modalBody}>
+                {/* City Filter */}
+                <View style={styles.filterSection}>
+                  <ThemedText style={styles.filterSectionTitle}>
+                    Ville
+                  </ThemedText>
+                  <View style={styles.filterOptionsWrapper}>
+                    {CITIES.map((city) => (
+                      <Pressable
+                        key={city}
+                        onPress={() =>
+                          setSelectedCity(selectedCity === city ? null : city)
+                        }
+                        style={[
+                          styles.filterPill,
+                          selectedCity === city && styles.filterPillActive,
+                        ]}
+                      >
+                        <ThemedText
+                          style={[
+                            styles.filterPillText,
+                            selectedCity === city && styles.filterPillTextActive,
+                          ]}
+                        >
+                          {city}
+                        </ThemedText>
+                      </Pressable>
+                    ))}
+                  </View>
+                </View>
+
+                {/* Dish Type Filter */}
+                <View style={styles.filterSection}>
+                  <ThemedText style={styles.filterSectionTitle}>
+                    Type de plat
+                  </ThemedText>
+                  <View style={styles.filterOptionsWrapper}>
+                    {DISH_TYPES.map((type) => (
+                      <Pressable
+                        key={type}
+                        onPress={() =>
+                          setSelectedDishType(
+                            selectedDishType === type ? null : type
+                          )
+                        }
+                        style={[
+                          styles.filterPill,
+                          selectedDishType === type && styles.filterPillActive,
+                        ]}
+                      >
+                        <ThemedText
+                          style={[
+                            styles.filterPillText,
+                            selectedDishType === type &&
+                              styles.filterPillTextActive,
+                          ]}
+                        >
+                          {type}
+                        </ThemedText>
+                      </Pressable>
+                    ))}
+                  </View>
+                </View>
+              </ScrollView>
+
+              {/* Modal Footer - Clear All */}
+              <View style={styles.modalFooter}>
                 <Pressable
-                  key={type}
-                  onPress={() =>
-                    setSelectedDishType(
-                      selectedDishType === type ? null : type
-                    )
-                  }
-                  style={[
-                    styles.filterButton,
-                    selectedDishType === type && styles.filterButtonActive,
-                  ]}
+                  style={styles.clearButton}
+                  onPress={() => {
+                    setSelectedCity(null);
+                    setSelectedDishType(null);
+                  }}
                 >
-                  <ThemedText
-                    type="small"
-                    style={[
-                      styles.filterButtonText,
-                      selectedDishType === type && styles.filterButtonTextActive,
-                    ]}
-                  >
-                    {type}
+                  <ThemedText style={styles.clearButtonText}>
+                    Réinitialiser les filtres
                   </ThemedText>
                 </Pressable>
-              ))}
-            </ScrollView>
-          </View>
-        </View>
+              </View>
+            </View>
+          </Pressable>
+        </Modal>
 
         {/* SECTION 1: RECOMMENDED FOR YOU */}
         <View style={styles.section}>
@@ -528,83 +582,138 @@ const styles = StyleSheet.create({
   // SEARCH BAR
   searchContainer: {
     paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.lg,
+    paddingVertical: Spacing.md,
+    paddingTop: Spacing.lg,
     backgroundColor: AppColors.white,
   },
+  searchBarWrapper: {
+    flexDirection: "row",
+    gap: Spacing.sm,
+    alignItems: "center",
+  },
   searchInputWrapper: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: AppColors.gray100,
-    borderRadius: BorderRadius.lg,
+    borderRadius: BorderRadius.md,
     paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.sm,
-    height: 48,
+    height: 40,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 3,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+    elevation: 2,
   },
   searchIcon: {
-    marginRight: Spacing.sm,
+    marginRight: Spacing.xs,
   },
   searchInput: {
     flex: 1,
-    fontSize: 16,
-    fontWeight: "500",
+    fontSize: 14,
+    fontWeight: "400",
     color: AppColors.dark,
+  },
+  filterIconButton: {
+    width: 40,
+    height: 40,
+    borderRadius: BorderRadius.md,
+    backgroundColor: AppColors.gray100,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  filterIconButtonActive: {
+    backgroundColor: AppColors.primary,
   },
 
-  // FILTERS
-  filtersSection: {
-    paddingHorizontal: Spacing.md,
+  // FILTER MODAL
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "flex-end",
+  },
+  modalContent: {
+    backgroundColor: AppColors.white,
+    borderTopLeftRadius: BorderRadius.lg,
+    borderTopRightRadius: BorderRadius.lg,
+    maxHeight: "85%",
+    paddingBottom: Spacing.lg,
+  },
+  modalHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: Spacing.lg,
     paddingVertical: Spacing.lg,
-    gap: Spacing.lg,
+    borderBottomWidth: 1,
+    borderBottomColor: AppColors.gray100,
   },
-  filterGroup: {
-    gap: Spacing.md,
-  },
-  filterLabel: {
+  modalTitle: {
+    fontSize: 18,
     fontWeight: "700",
     color: AppColors.dark,
-    paddingHorizontal: Spacing.sm,
-    fontSize: 14,
-    letterSpacing: 0.3,
   },
-  filterScroll: {
-    paddingHorizontal: Spacing.sm,
-  },
-  filterButton: {
+  modalBody: {
     paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.lg,
+  },
+  filterSection: {
+    marginBottom: Spacing.xl,
+  },
+  filterSectionTitle: {
+    fontSize: 14,
+    fontWeight: "700",
+    color: AppColors.dark,
+    marginBottom: Spacing.md,
+  },
+  filterOptionsWrapper: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: Spacing.sm,
+  },
+  filterPill: {
+    paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.sm,
     borderRadius: BorderRadius.full,
     borderWidth: 1.5,
     borderColor: AppColors.gray300,
-    marginRight: Spacing.md,
     backgroundColor: AppColors.white,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 3,
-    elevation: 2,
   },
-  filterButtonActive: {
+  filterPillActive: {
     backgroundColor: AppColors.primary,
     borderColor: AppColors.primary,
-    shadowColor: AppColors.primary,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
-    elevation: 5,
   },
-  filterButtonText: {
+  filterPillText: {
     color: AppColors.dark,
     fontSize: 13,
     fontWeight: "600",
   },
-  filterButtonTextActive: {
+  filterPillTextActive: {
     color: AppColors.white,
     fontWeight: "700",
+  },
+  modalFooter: {
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.lg,
+    borderTopWidth: 1,
+    borderTopColor: AppColors.gray100,
+  },
+  clearButton: {
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.md,
+    borderRadius: BorderRadius.md,
+    backgroundColor: AppColors.gray100,
+    alignItems: "center",
+  },
+  clearButtonText: {
+    color: AppColors.dark,
+    fontWeight: "600",
+    fontSize: 14,
   },
 
   // SECTIONS
