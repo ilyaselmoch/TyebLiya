@@ -1,0 +1,66 @@
+lets do the Client Home / Feed screen for TyebLiya with the following features:
+
+1. **Three horizontal sections stacked vertically**:
+   - **Section 1 – Recommended for You**:
+     - Horizontal scroll (carousel style)
+     - Each card shows:
+       - Dish photo
+       - Dish title
+       - Chef name + chef profile photo
+       - Dish rating (stars)
+   - **Section 2 – Top Dish of the Day**:
+     - Horizontal scroll
+     - Same card style as Section 1
+     - Highlight the most popular dishes of the day
+   - **Section 3 – Top Chef Recommendations**:
+     - Horizontal scroll
+     - Each card shows:
+       - Chef profile photo
+       - Chef name
+       - Chef rating (stars)
+       - Optional badge “Top Chef”
+
+2. **Search bar at the top**:
+   - Allows users to search dishes by name
+   - Placeholder text: "Search for a dish..."
+   - Clear button to reset search
+
+3. **Filters below search**:
+   - Filter by:
+     - City (e.g., Casablanca, Rabat, Fes, Marrakech)
+     - Dish type (Couscous, Tajine, Rfissa…)
+   - Filters should be horizontally scrollable buttons or dropdowns
+   - Selecting a filter updates the displayed dishes in Section 1 and Section 2
+
+4. **Dish and Chef Cards Styling**:
+   - Modern and clean layout using TailwindCSS
+   - Rounded corners, shadows, padding
+   - Hover effect: slight lift or shadow
+   - Ratings displayed as stars below each card
+   - Responsive layout: small cards on mobile, larger cards on desktop
+
+5. **Mock Data**:
+   - Use arrays of mock dishes and chefs
+   - Section 1 & 2: include dish photo, name, chef name, chef profile photo, rating
+   - Section 3: include chef profile photo, name, rating
+
+6. **User Interactions**:
+   - Click on a dish → opens Dish Detail page
+   - Click on a chef → opens Chef Profile page
+   - Smooth horizontal scrolling
+   - Optional: “See All →” link in each section header to view full list
+
+7. **Additional Front-End Details**:
+   - Sticky top search bar
+   - Clean spacing between sections
+   - Section headers with bold title and subtle underline or divider
+   - Optional subtle background gradient for each section
+
+8. **React Requirements**:
+   - Use functional components and hooks
+   - Include comments explaining:
+     - Layout structure
+     - Search and filter logic
+     - Horizontal scrolling
+     - Card components and styling
+   - Prepare for future integration with Supabase database
