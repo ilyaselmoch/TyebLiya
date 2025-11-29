@@ -36,6 +36,7 @@ interface AuthContextType {
   signUp: (pseudo: string, email: string, password: string) => Promise<boolean>;
   signOut: () => void;
   clearError: () => void;
+  setUserRole: (role: "client" | "cuisinier") => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -242,6 +243,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setError(null);
   };
 
+  const setUserRole = (role: "client" | "cuisinier") => {
+    if (user) {
+      setUser({ ...user, role });
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -255,6 +262,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         signUp,
         signOut,
         clearError,
+        setUserRole,
       }}
     >
       {children}

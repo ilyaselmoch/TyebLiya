@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import {
   View,
   StyleSheet,
-  FlatList,
+  TextInput,
   ScrollView,
   Pressable,
   Image,
@@ -307,13 +307,12 @@ export default function ClientHomeScreen() {
               color={AppColors.gray600}
               style={styles.searchIcon}
             />
-            <ThemedText
+            <TextInput
               style={styles.searchInput}
               placeholder="Rechercher un plat..."
               placeholderTextColor={AppColors.gray600}
               value={searchQuery}
               onChangeText={setSearchQuery}
-              onSubmitEditing={() => {}}
             />
             {searchQuery ? (
               <Pressable onPress={() => setSearchQuery("")}>

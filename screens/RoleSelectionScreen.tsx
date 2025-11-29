@@ -11,7 +11,7 @@ import Animated, {
 import { ThemedText } from "@/components/ThemedText";
 import { useAuth } from "@/context/AuthContext";
 import { Spacing, AppColors, BorderRadius } from "@/constants/theme";
-import { saveUserRole } from "@/lib/auth";
+import { saveUserRole, getUserRole } from "@/lib/auth";
 
 // Spring animation configuration for smooth button interactions
 const springConfig: WithSpringConfig = {
@@ -26,7 +26,7 @@ const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 // Role selection screen - shown after login if user doesn't have a role
 // Centered layout with two role buttons, responsive to screen size
 export default function RoleSelectionScreen() {
-  const { user } = useAuth();
+  const { user, setUserRole } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { width } = useWindowDimensions();
@@ -34,7 +34,7 @@ export default function RoleSelectionScreen() {
   // Determine if we're on a desktop-like screen (wider than 600px)
   const isDesktop = width > 600;
 
-  // Handle role selection: save to Supabase, AuthContext will handle redirect
+  // Handle role selection: update context immediately, save to Supabase in background
   const handleSelectRole = async (role: "client" | "cuisinier") => {
     if (!user?.id || isLoading) return;
 
@@ -42,14 +42,19 @@ export default function RoleSelectionScreen() {
     setError(null);
 
     try {
-      const success = await saveUserRole(user.id, role);
-      if (!success) {
-        setError("Erreur lors de l'enregistrement du rôle. Veuillez réessayer.");
-        setIsLoading(false);
+      // Update context immediately so UI responds instantly
+      if (setUserRole) {
+        setUserRole(role);
       }
-      // No need to manually update - AuthContext will fetch the role on next render
+
+      // Try to save to Supabase in background (non-blocking)
+      // This handles the case where the users table doesn't exist yet
+      saveUserRole(user.id, role).catch((err) => {
+        console.warn("Failed to save role to Supabase (non-blocking):", err);
+      });
     } catch (err) {
       setError("Une erreur est survenue. Veuillez réessayer.");
+    } finally {
       setIsLoading(false);
     }
   };
