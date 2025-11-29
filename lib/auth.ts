@@ -8,6 +8,10 @@ export interface Profile {
   created_at: string;
 }
 
+export interface UserRole {
+  role: "client" | "cuisinier";
+}
+
 export interface AuthResult {
   success: boolean;
   error?: string;
@@ -179,6 +183,35 @@ export async function getProfile(userId: string): Promise<Profile | null> {
 
     return data as Profile;
   } catch {
+    return null;
+  }
+}
+
+// Fetch user role from the "users" table
+// Returns the role ("client" or "cuisinier") if found, null otherwise
+export async function getUserRole(userId: string): Promise<"client" | "cuisinier" | null> {
+  const supabase = getSupabase();
+  
+  if (!supabase) {
+    return null;
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from("users")
+      .select("role")
+      .eq("id", userId)
+      .single();
+
+    if (error || !data) {
+      console.warn("Role not found for user:", userId);
+      return null;
+    }
+
+    const role = data.role as "client" | "cuisinier" | null;
+    return role === "client" || role === "cuisinier" ? role : null;
+  } catch (err) {
+    console.error("Error fetching user role:", err);
     return null;
   }
 }
