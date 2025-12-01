@@ -463,15 +463,15 @@ const styles = StyleSheet.create({
   availabilityToggle: {
     flexDirection: "row",
     alignItems: "center",
-    gap: Spacing.xs,
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.sm,
     borderRadius: BorderRadius.full,
+    marginRight: Spacing.xs,
   },
   headerRightButtons: {
     flexDirection: "row",
     alignItems: "center",
-    gap: Spacing.sm,
+    marginLeft: Spacing.sm,
   },
   profileButton: {
     width: 38,
@@ -480,6 +480,7 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.terracotta,
     justifyContent: "center",
     alignItems: "center",
+    marginLeft: Spacing.sm,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.15,
