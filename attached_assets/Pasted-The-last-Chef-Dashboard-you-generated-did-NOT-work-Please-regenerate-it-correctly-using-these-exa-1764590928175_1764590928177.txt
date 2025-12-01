@@ -1,0 +1,129 @@
+The last Chef Dashboard you generated did NOT work. 
+Please regenerate it correctly using these exact instructions. 
+Follow the structure and design details carefully and produce a clean, functional React + TailwindCSS screen with mock data.
+
+I need you to build a **Chef Dashboard page** for the app TyebLiya using React + TailwindCSS. 
+It must be fully mobile-first, modern, aesthetically warm Moroccan style (terracotta, saffron, beige, mint green), with rounded corners and soft shadows.
+
+DO NOT simplify anything. 
+Follow EVERYTHING below exactly.
+
+--------------------------------------
+🏵️ STRUCTURE
+--------------------------------------
+
+1. HEADER (Top sticky)
+- Height: 80px
+- Background: sand beige (#F3E7D3)
+- Sticky at the top with subtle shadow
+- Left: Chef profile photo (circle, 60px, soft shadow)
+- Center: Text “Welcome, {Chef Name}!” in dark brown
+- Right: Availability toggle switch:
+    - Shows 🟢 OPEN (green) or 🔴 CLOSED (red)
+    - Rounded pill style button with terracotta accents
+
+2. TODAY’S SUMMARY SECTION
+Place this under the header.
+Create a horizontal row of 3 summary cards:
+- Rounded corners, soft shadow
+- Equal spacing
+- Fully responsive on mobile (stack if needed)
+Cards:
+  • Card 1 → “Orders Today” + number (mock: 5)
+  • Card 2 → “Earnings Today” + MAD amount (mock: 240 MAD)
+  • Card 3 → “Rating” + star icons (mock: 4.9 ⭐)
+
+3. INCOMING ORDERS LIST
+Scrollable vertical list.
+Each order is a card with:
+- Left: Dish photo (square, 80px)
+- Center:
+    • Client name (bold)
+    • Dish title
+    • Quantity
+    • Status: Pending / Accepted / Cooking / Ready
+- Right: Vertical button group:
+    • Accept (mint green)
+    • Decline (terracotta)
+    • Start Cooking OR Mark Ready (saffron yellow)
+Card styling:
+- Soft rounded corners
+- p-4 padding
+- mb-4 spacing
+- Smooth shadow
+
+Mock interactions:
+- Accept → update status visually
+- Decline → remove card (locally)
+- Cooking → change text dynamically
+
+4. CHEF MENU (“Your Dishes”)
+Below orders, add a section title styled in terracotta.
+Then a 2-column responsive grid of dish cards:
+Each card:
+- Top: Dish image
+- Dish name + price
+- Status badge: Available / Hidden
+- Button: Edit (mint green)
+
+Top-right corner of this section:
+- Big button: “+ Add New Dish”
+- Rounded 20px
+- Terracotta gradient background
+- Opens a dummy modal or alert
+
+5. EARNINGS / STATISTICS SECTION
+Two small horizontal cards:
+- This Week: 920 MAD
+- This Month: 3,750 MAD
+Styling:
+- Beige background
+- Soft shadow
+- Small clean font
+- Rounded corners
+
+6. SETTINGS / PROFILE ACCESS
+Place a minimalist icon button in:
+- either top-right of header  
+- or a bottom sticky navigation  
+It should open a Settings/Profile placeholder page.
+
+--------------------------------------
+🎨 DESIGN REQUIREMENTS
+--------------------------------------
+- Rounded corner radius: 
+    • Cards = 2xl
+    • Buttons = 20px
+- Shadows: soft, warm drop-shadows
+- Typography:
+    • Text color: warm brown (#4A2E1F)
+    • Headings: terracotta (#D96E48)
+    • Accents: saffron (#E6A500)
+- Padding: at least p-2 inside all cards
+- Smooth interactions:
+    • Button hover scale: 1.05
+    • Transition: 150ms
+
+--------------------------------------
+📦 MOCK DATA
+--------------------------------------
+Include arrays for:
+- Incoming orders (5–6 items)
+- Dishes for menu section (6–8 items)
+Use any placeholder images.
+
+--------------------------------------
+📝 COMMENTS
+--------------------------------------
+Add clear comments inside the code:
+- “// Header”
+- “// Today’s Summary”
+- “// Incoming Orders”
+- “// Menu Section”
+- “// Statistics Section”
+- “// Mock interactions”
+
+--------------------------------------
+IMPORTANT:
+Produce the full React component with Tailwind styling.
+It must compile without errors.
