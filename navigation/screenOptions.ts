@@ -11,6 +11,8 @@ interface ScreenOptionsParams {
   transparent?: boolean;
 }
 
+import { AppColors } from "@/constants/theme";
+
 export const getCommonScreenOptions = ({
   theme,
   isDark,
@@ -19,18 +21,18 @@ export const getCommonScreenOptions = ({
   headerTitleAlign: "center",
   headerTransparent: transparent,
   headerBlurEffect: isDark ? "dark" : "light",
-  headerTintColor: theme.text,
+  headerTintColor: AppColors.warmBrown,
   headerStyle: {
     backgroundColor: Platform.select({
       ios: undefined,
-      android: theme.backgroundRoot,
-      web: theme.backgroundRoot,
+      android: AppColors.sandBeige,
+      web: AppColors.sandBeige,
     }),
   },
   gestureEnabled: true,
   gestureDirection: "horizontal",
   fullScreenGestureEnabled: isLiquidGlassAvailable() ? false : true,
   contentStyle: {
-    backgroundColor: theme.backgroundRoot,
+    backgroundColor: AppColors.lightBeige,
   },
 });

@@ -315,7 +315,7 @@ export default function ChefDashboardScreen() {
                         style={[styles.orderButton, styles.cookingButton]}
                         onPress={() => handleStartCooking(order.id)}
                       >
-                        <Feather name="fire" size={16} color={AppColors.white} />
+                        <Feather name="zap" size={16} color={AppColors.white} />
                       </Pressable>
                     )}
 
