@@ -5,7 +5,6 @@ import {
   ScrollView,
   Pressable,
   Image,
-  FlatList,
   useWindowDimensions,
   Alert,
 } from "react-native";
@@ -236,12 +235,9 @@ export default function ChefDashboardScreen() {
         >
           <Feather
             name={isOpen ? "check-circle" : "x-circle"}
-            size={16}
+            size={14}
             color={AppColors.white}
           />
-          <ThemedText style={styles.availabilityText}>
-            {isOpen ? "Open" : "Closed"}
-          </ThemedText>
         </Pressable>
       </View>
 
@@ -251,25 +247,29 @@ export default function ChefDashboardScreen() {
         <View style={styles.summaryContainer}>
           {/* Orders Today */}
           <View style={styles.summaryCard}>
-            <ThemedText style={styles.summaryLabel}>Orders Today</ThemedText>
+            <View style={styles.summaryCardTop}>
+              <ThemedText style={styles.summaryLabel}>Orders</ThemedText>
+              <Feather name="shopping-cart" size={18} color={AppColors.terracotta} />
+            </View>
             <ThemedText style={styles.summaryValue}>{ordersToday}</ThemedText>
-            <Feather name="shopping-cart" size={20} color={AppColors.terracotta} />
           </View>
 
           {/* Earnings Today */}
           <View style={styles.summaryCard}>
-            <ThemedText style={styles.summaryLabel}>Earnings Today</ThemedText>
-            <ThemedText style={styles.summaryValue}>{earningsToday} MAD</ThemedText>
-            <Feather name="trending-up" size={20} color={AppColors.saffron} />
+            <View style={styles.summaryCardTop}>
+              <ThemedText style={styles.summaryLabel}>Earnings</ThemedText>
+              <Feather name="trending-up" size={18} color={AppColors.saffron} />
+            </View>
+            <ThemedText style={styles.summaryValue}>{earningsToday}</ThemedText>
           </View>
 
           {/* Rating */}
           <View style={styles.summaryCard}>
-            <ThemedText style={styles.summaryLabel}>Rating</ThemedText>
-            <View style={styles.ratingRow}>
-              <ThemedText style={styles.summaryValue}>{rating}</ThemedText>
-              <Feather name="star" size={16} color={AppColors.saffron} fill={AppColors.saffron} />
+            <View style={styles.summaryCardTop}>
+              <ThemedText style={styles.summaryLabel}>Rating</ThemedText>
+              <Feather name="star" size={18} color={AppColors.saffron} fill={AppColors.saffron} />
             </View>
+            <ThemedText style={styles.summaryValue}>{rating}</ThemedText>
           </View>
         </View>
 
@@ -291,10 +291,9 @@ export default function ChefDashboardScreen() {
                     </ThemedText>
                     <ThemedText style={styles.orderDishTitle}>{order.dishTitle}</ThemedText>
                     <View style={styles.orderMeta}>
-                      <ThemedText style={styles.orderQuantity}>
-                        Qty: {order.quantity}
+                      <ThemedText style={styles.orderMetaText}>
+                        {order.quantity}x • {order.time}
                       </ThemedText>
-                      <ThemedText style={styles.orderTime}>{order.time} left</ThemedText>
                     </View>
                     <StatusBadge status={order.status} />
                   </View>
@@ -307,13 +306,13 @@ export default function ChefDashboardScreen() {
                           style={[styles.orderButton, styles.acceptButton]}
                           onPress={() => handleAcceptOrder(order.id)}
                         >
-                          <Feather name="check" size={14} color={AppColors.white} />
+                          <Feather name="check" size={16} color={AppColors.white} />
                         </Pressable>
                         <Pressable
                           style={[styles.orderButton, styles.declineButton]}
                           onPress={() => handleDeclineOrder(order.id)}
                         >
-                          <Feather name="x" size={14} color={AppColors.white} />
+                          <Feather name="x" size={16} color={AppColors.white} />
                         </Pressable>
                       </>
                     )}
@@ -323,7 +322,7 @@ export default function ChefDashboardScreen() {
                         style={[styles.orderButton, styles.cookingButton]}
                         onPress={() => handleStartCooking(order.id)}
                       >
-                        <ThemedText style={styles.orderButtonText}>Cook</ThemedText>
+                        <Feather name="fire" size={16} color={AppColors.white} />
                       </Pressable>
                     )}
 
@@ -332,7 +331,7 @@ export default function ChefDashboardScreen() {
                         style={[styles.orderButton, styles.readyButton]}
                         onPress={() => handleMarkReady(order.id)}
                       >
-                        <ThemedText style={styles.orderButtonText}>Ready</ThemedText>
+                        <Feather name="check-circle" size={16} color={AppColors.white} />
                       </Pressable>
                     )}
 
@@ -361,8 +360,7 @@ export default function ChefDashboardScreen() {
               style={styles.addDishButton}
               onPress={() => Alert.alert("Add New Dish", "Modal to add dish coming soon!")}
             >
-              <Feather name="plus" size={18} color={AppColors.white} />
-              <ThemedText style={styles.addDishButtonText}>Add</ThemedText>
+              <Feather name="plus" size={16} color={AppColors.white} />
             </Pressable>
           </View>
 
@@ -370,15 +368,17 @@ export default function ChefDashboardScreen() {
             {mockDishes.map((dish) => (
               <View key={dish.id} style={styles.dishCard}>
                 <Image source={{ uri: dish.image }} style={styles.dishCardImage} />
-                <ThemedText style={styles.dishCardName} numberOfLines={1}>
-                  {dish.name}
-                </ThemedText>
-                <ThemedText style={styles.dishCardPrice}>{dish.price} MAD</ThemedText>
-                <View style={styles.dishCardFooter}>
-                  <StatusBadge status={dish.status} />
-                  <Pressable style={styles.editButton}>
-                    <Feather name="edit" size={14} color={AppColors.white} />
-                  </Pressable>
+                <View style={styles.dishCardContent}>
+                  <ThemedText style={styles.dishCardName} numberOfLines={1}>
+                    {dish.name}
+                  </ThemedText>
+                  <ThemedText style={styles.dishCardPrice}>{dish.price} MAD</ThemedText>
+                  <View style={styles.dishCardFooter}>
+                    <StatusBadge status={dish.status} />
+                    <Pressable style={styles.editButton}>
+                      <Feather name="edit-2" size={13} color={AppColors.white} />
+                    </Pressable>
+                  </View>
                 </View>
               </View>
             ))}
@@ -413,7 +413,7 @@ export default function ChefDashboardScreen() {
 }
 
 // ============================================================================
-// STYLES
+// STYLES - CLEAN, MODERN, MOROCCAN DESIGN
 // ============================================================================
 
 const styles = StyleSheet.create({
@@ -421,7 +421,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  // HEADER
+  // ========== HEADER ==========
   header: {
     flexDirection: "row",
     alignItems: "center",
@@ -435,7 +435,7 @@ const styles = StyleSheet.create({
   headerProfilePhoto: {
     width: 50,
     height: 50,
-    borderRadius: BorderRadius.full,
+    borderRadius: 25,
     borderWidth: 2,
     borderColor: AppColors.terracotta,
   },
@@ -455,31 +455,30 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.sm,
     borderRadius: BorderRadius.full,
   },
-  availabilityText: {
-    fontSize: 12,
-    fontWeight: "600",
-    color: AppColors.white,
-  },
 
-  // SUMMARY CARDS
+  // ========== SUMMARY CARDS ==========
   summaryContainer: {
     flexDirection: "row",
-    gap: Spacing.md,
+    gap: Spacing.sm,
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.lg,
   },
   summaryCard: {
     flex: 1,
-    backgroundColor: AppColors.lightBeige,
+    backgroundColor: AppColors.white,
     borderRadius: BorderRadius.lg,
     padding: Spacing.md,
-    alignItems: "center",
     gap: Spacing.sm,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.06,
-    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
     elevation: 2,
+  },
+  summaryCardTop: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   summaryLabel: {
     fontSize: 12,
@@ -487,17 +486,12 @@ const styles = StyleSheet.create({
     color: AppColors.gray600,
   },
   summaryValue: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "700",
     color: AppColors.warmBrown,
   },
-  ratingRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: Spacing.xs,
-  },
 
-  // SECTIONS
+  // ========== SECTIONS ==========
   section: {
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.lg,
@@ -514,20 +508,20 @@ const styles = StyleSheet.create({
     color: AppColors.terracotta,
   },
 
-  // ORDERS LIST
+  // ========== ORDERS LIST ==========
   ordersList: {
     gap: Spacing.md,
   },
   orderCard: {
     flexDirection: "row",
-    backgroundColor: AppColors.lightBeige,
+    backgroundColor: AppColors.white,
     borderRadius: BorderRadius.lg,
     padding: Spacing.md,
     gap: Spacing.md,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.06,
-    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
     elevation: 2,
     alignItems: "center",
   },
@@ -551,15 +545,9 @@ const styles = StyleSheet.create({
     color: AppColors.dark,
   },
   orderMeta: {
-    flexDirection: "row",
-    gap: Spacing.md,
+    marginBottom: Spacing.xs,
   },
-  orderQuantity: {
-    fontSize: 11,
-    fontWeight: "500",
-    color: AppColors.gray600,
-  },
-  orderTime: {
+  orderMetaText: {
     fontSize: 11,
     fontWeight: "500",
     color: AppColors.gray600,
@@ -578,8 +566,8 @@ const styles = StyleSheet.create({
     gap: Spacing.xs,
   },
   orderButton: {
-    width: 36,
-    height: 36,
+    width: 40,
+    height: 40,
     borderRadius: BorderRadius.md,
     justifyContent: "center",
     alignItems: "center",
@@ -601,13 +589,8 @@ const styles = StyleSheet.create({
   readyButton: {
     backgroundColor: "#16A34A",
   },
-  orderButtonText: {
-    fontSize: 11,
-    fontWeight: "700",
-    color: AppColors.white,
-  },
 
-  // EMPTY STATE
+  // ========== EMPTY STATE ==========
   emptyState: {
     alignItems: "center",
     justifyContent: "center",
@@ -620,7 +603,7 @@ const styles = StyleSheet.create({
     color: AppColors.gray600,
   },
 
-  // DISHES GRID
+  // ========== DISHES GRID ==========
   dishesGrid: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -629,43 +612,43 @@ const styles = StyleSheet.create({
   },
   dishCard: {
     width: "48%",
-    backgroundColor: AppColors.lightBeige,
+    backgroundColor: AppColors.white,
     borderRadius: BorderRadius.lg,
     overflow: "hidden",
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.06,
-    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
     elevation: 2,
   },
   dishCardImage: {
     width: "100%",
     height: 120,
   },
+  dishCardContent: {
+    padding: Spacing.md,
+    gap: Spacing.xs,
+  },
   dishCardName: {
     fontSize: 13,
     fontWeight: "700",
     color: AppColors.warmBrown,
-    paddingHorizontal: Spacing.md,
-    paddingTop: Spacing.md,
   },
   dishCardPrice: {
     fontSize: 12,
     fontWeight: "600",
     color: AppColors.terracotta,
-    paddingHorizontal: Spacing.md,
   },
   dishCardFooter: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: Spacing.md,
-    paddingVertical: Spacing.md,
     gap: Spacing.sm,
+    marginTop: Spacing.sm,
   },
   editButton: {
-    width: 28,
-    height: 28,
+    width: 32,
+    height: 32,
     borderRadius: BorderRadius.md,
     backgroundColor: AppColors.mintGreen,
     justifyContent: "center",
@@ -680,28 +663,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.sm,
   },
-  addDishButtonText: {
-    fontSize: 12,
-    fontWeight: "700",
-    color: AppColors.white,
-  },
 
-  // EARNINGS
+  // ========== EARNINGS ==========
   earningsRow: {
     flexDirection: "row",
     gap: Spacing.md,
   },
   earningsCard: {
     flex: 1,
-    backgroundColor: AppColors.lightBeige,
+    backgroundColor: AppColors.white,
     borderRadius: BorderRadius.lg,
     padding: Spacing.md,
     alignItems: "center",
     gap: Spacing.sm,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.06,
-    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
     elevation: 2,
   },
   earningsLabel: {
@@ -715,7 +693,7 @@ const styles = StyleSheet.create({
     color: AppColors.terracotta,
   },
 
-  // LOGOUT
+  // ========== LOGOUT ==========
   logoutSection: {
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.lg,

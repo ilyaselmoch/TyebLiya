@@ -1,0 +1,106 @@
+Fix the entire front-end UI of the current screen.
+
+Make the design clean, modern, balanced, and perfectly aligned using:
+
+Consistent spacing
+
+Better margins/paddings
+
+Proper component grouping
+
+Correct color usage
+
+Mobile-first responsive layout
+
+Consistent rounded corners and shadows
+
+🔥 GLOBAL STYLE IMPROVEMENTS:
+
+Use a warm Moroccan-inspired palette:
+
+Terracotta: #D96E48
+
+Saffron Yellow: #E6A500
+
+Mint Green: #7ECBA7
+
+Dark Brown: #4A2E1F
+
+Sand Beige: #F3E7D3
+
+Make all backgrounds soft and consistent
+
+Add subtle shadows to cards and buttons (not too strong)
+
+Use rounded corners everywhere: rounded-2xl for cards, rounded-lg for buttons
+
+Use vertical spacing (space-y-*) and horizontal spacing (space-x-*) to avoid elements touching each other
+
+Ensure buttons have:
+
+Smooth hover animation (transition, scale-105)
+
+Clear colors (green = confirm, red = decline, yellow = cooking)
+
+🔧 FIX EMPLACEMENT / ALIGNMENT:
+
+Make all major sections clearly separated with proper margin-top
+
+Center the header content correctly (profile left, title center, toggle right)
+
+Fix the search bar (remove thick border, make it smooth, rounded, clean)
+
+Move search bar upwards to be closer to the top
+
+Replace the big filter UI with a small filter icon button
+
+When pressed → open the filter window
+
+📱 RESPONSIVENESS:
+
+All content must look perfect on:
+
+Small phones
+
+Normal phones
+
+Tablets
+
+Use grid for dishes, 2 columns minimum
+
+Order cards must stack cleanly with good spacing
+
+🎨 COLORS & BEAUTY CORRECTIONS:
+
+Harmonize all colors with the palette
+
+Remove default grey borders; use softer beige instead
+
+Fix ugly background colors and replace with beige or white with shadow
+
+Buttons should have:
+
+Terracotta for primary
+
+Mint green for confirm actions
+
+Yellow for progress actions
+
+📌 OVERALL GOAL:
+
+Make the UI look like a smooth premium Moroccan food delivery app, with:
+
+Clean structured layout
+
+Correctly aligned components
+
+Pleasant colors
+
+Comfortable spacing
+
+Beautiful shadows
+
+Modern animations
+
+Do not change the logic. Only improve the UI visually.
+Refactor all styling to be clean and consistent.
