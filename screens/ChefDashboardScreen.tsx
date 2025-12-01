@@ -213,19 +213,12 @@ export default function ChefDashboardScreen() {
 
   return (
     <ThemedView style={styles.container}>
-      {/* HEADER - Sticky at top */}
-      <View style={styles.header}>
-        <Image
-          source={{
-            uri: "https://via.placeholder.com/60/FF6B35/FFFFFF?text=Chef",
-          }}
-          style={styles.headerProfilePhoto}
-        />
-        <View style={styles.headerCenter}>
-          <ThemedText style={styles.headerTitle}>
-            Welcome, {user?.pseudo || "Chef"}!
-          </ThemedText>
+      {/* HEADER WITH LOGO AND APP NAME */}
+      <View style={styles.headerTop}>
+        <View style={styles.logoSmallHeader}>
+          <ThemedText style={styles.logoTextHeader}>TL</ThemedText>
         </View>
+        <ThemedText style={styles.appNameTopHeader}>Tyeb Liya</ThemedText>
         <Pressable
           onPress={() => setIsOpen(!isOpen)}
           style={[
@@ -422,30 +415,32 @@ const styles = StyleSheet.create({
   },
 
   // ========== HEADER ==========
-  header: {
+  headerTop: {
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.md,
     backgroundColor: AppColors.sandBeige,
-    borderBottomWidth: 1,
-    borderBottomColor: AppColors.gray300,
     gap: Spacing.md,
   },
-  headerProfilePhoto: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    borderWidth: 2,
-    borderColor: AppColors.terracotta,
+  logoSmallHeader: {
+    width: 40,
+    height: 40,
+    borderRadius: BorderRadius.lg,
+    backgroundColor: AppColors.terracotta,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  headerCenter: {
-    flex: 1,
+  logoTextHeader: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: AppColors.white,
   },
-  headerTitle: {
+  appNameTopHeader: {
     fontSize: 16,
     fontWeight: "700",
     color: AppColors.warmBrown,
+    flex: 1,
   },
   availabilityToggle: {
     flexDirection: "row",

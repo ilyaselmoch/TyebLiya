@@ -307,6 +307,15 @@ export default function ClientHomeScreen() {
 
   return (
     <ThemedView style={styles.container}>
+      {/* HEADER WITH LOGO AND APP NAME */}
+      <View style={styles.headerTop}>
+        <View style={styles.logoSmall}>
+          <ThemedText style={styles.logoText}>TL</ThemedText>
+        </View>
+        <ThemedText style={styles.appNameTop}>Tyeb Liya</ThemedText>
+        <View style={styles.spacer} />
+      </View>
+
       <ScreenScrollView>
         {/* SEARCH BAR WITH FILTER BUTTON */}
         <View style={styles.searchContainer}>
@@ -581,6 +590,38 @@ export default function ClientHomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: AppColors.lightBeige,
+  },
+
+  // HEADER TOP
+  headerTop: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.md,
+    backgroundColor: AppColors.sandBeige,
+    gap: Spacing.md,
+  },
+  logoSmall: {
+    width: 40,
+    height: 40,
+    borderRadius: BorderRadius.lg,
+    backgroundColor: AppColors.terracotta,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  logoText: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: AppColors.white,
+  },
+  appNameTop: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: AppColors.warmBrown,
+  },
+  spacer: {
     flex: 1,
   },
 

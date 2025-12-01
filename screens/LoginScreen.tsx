@@ -77,7 +77,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
   const displayError = localError || error;
 
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView style={[styles.container, { backgroundColor: AppColors.lightBeige }]}>
       <ScreenKeyboardAwareScrollView
         contentContainerStyle={[
           styles.scrollContent,
@@ -239,6 +239,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginBottom: Spacing.md,
+    backgroundColor: AppColors.terracotta,
   },
   logo: {
     width: 70,
@@ -248,9 +249,11 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: "700",
     marginBottom: Spacing.xs,
+    color: AppColors.warmBrown,
   },
   tagline: {
-    opacity: 0.7,
+    opacity: 0.9,
+    color: AppColors.terracotta,
   },
   demoBadge: {
     flexDirection: "row",
@@ -260,10 +263,11 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.lg,
     marginTop: Spacing.sm,
     gap: 4,
+    backgroundColor: AppColors.saffron + "20",
   },
   demoText: {
     fontSize: 12,
-    color: AppColors.primary,
+    color: AppColors.terracotta,
     fontWeight: "500",
   },
   formContainer: {
@@ -305,5 +309,6 @@ const styles = StyleSheet.create({
   },
   linkText: {
     fontWeight: "600",
+    color: AppColors.terracotta,
   },
 });

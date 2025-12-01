@@ -89,11 +89,11 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
   const passwordStrength = getPasswordStrength();
 
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView style={[styles.container, { backgroundColor: AppColors.lightBeige }]}>
       <ScreenKeyboardAwareScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.headerContainer}>
-          <ThemedText style={styles.title}>Rejoignez Tyeb Liya</ThemedText>
-          <ThemedText style={styles.subtitle} type="small">
+          <ThemedText style={[styles.title, { color: AppColors.warmBrown }]}>Rejoignez Tyeb Liya</ThemedText>
+          <ThemedText style={[styles.subtitle, { color: AppColors.terracotta }]} type="small">
             Créez votre compte en quelques secondes
           </ThemedText>
         </View>

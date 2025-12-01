@@ -60,7 +60,7 @@ export default function RoleSelectionScreen() {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: AppColors.secondary }]}>
+    <View style={[styles.container, { backgroundColor: AppColors.lightBeige }]}>
       {/* Centered content container */}
       <View style={styles.centerContainer}>
         {/* Welcome section */}
@@ -107,7 +107,7 @@ export default function RoleSelectionScreen() {
             role="cuisinier"
             title="Cuisinier"
             description="Je propose des services culinaires"
-            iconName="chef-hat"
+            iconName="menu"
             onPress={() => handleSelectRole("cuisinier")}
             disabled={isLoading}
             isLoading={isLoading}
@@ -254,6 +254,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: "700",
     textAlign: "center",
+    color: AppColors.warmBrown,
   },
 
   // Welcome subtitle text with reduced opacity
@@ -261,7 +262,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "400",
     textAlign: "center",
-    opacity: 0.7,
+    opacity: 0.8,
+    color: AppColors.warmBrown,
   },
 
   // Buttons container - flex layout changes based on screen size
@@ -283,6 +285,7 @@ const styles = StyleSheet.create({
     padding: Spacing.lg,
     justifyContent: "space-between",
     alignItems: "center",
+    backgroundColor: AppColors.terracotta,
   },
 
   // Button icon container

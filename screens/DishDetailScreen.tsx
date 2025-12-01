@@ -406,6 +406,7 @@ export default function DishDetailScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: AppColors.lightBeige,
   },
 
   // Dish Image Square
