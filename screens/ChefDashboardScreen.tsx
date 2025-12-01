@@ -251,6 +251,13 @@ export default function ChefDashboardScreen({ navigation }: Props) {
     <ThemedView style={styles.container}>
       {/* HEADER WITH LOGO AND APP NAME */}
       <View style={styles.headerTop}>
+        <Pressable
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}
+          hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}
+        >
+          <Feather name="arrow-left" size={28} color={AppColors.terracotta} />
+        </Pressable>
         <View style={styles.logoSmallHeader}>
           <ThemedText style={styles.logoTextHeader}>TL</ThemedText>
         </View>
@@ -409,6 +416,21 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.sm,
     borderRadius: BorderRadius.full,
     marginRight: Spacing.xs,
+  },
+  backButton: {
+    width: 50,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: AppColors.white,
+    borderRadius: BorderRadius.full,
+    borderWidth: 2,
+    borderColor: AppColors.terracotta,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+    elevation: 5,
   },
 
   // ========== SUMMARY CARDS ==========
