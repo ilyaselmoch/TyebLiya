@@ -17,6 +17,7 @@ interface BottomNavItem {
   label: string;
   onPress: () => void;
   isActive: boolean;
+  badge?: number;
 }
 
 interface BottomNavigationBarProps {
@@ -57,6 +58,22 @@ export function BottomNavigationBar({ items }: BottomNavigationBarProps) {
       fontSize: 12,
       fontWeight: "600",
     },
+    badge: {
+      position: "absolute",
+      top: -2,
+      right: -4,
+      backgroundColor: "#EF4444",
+      borderRadius: 10,
+      width: 20,
+      height: 20,
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    badgeText: {
+      color: "white",
+      fontSize: 11,
+      fontWeight: "700",
+    },
   });
 
   return (
@@ -74,6 +91,11 @@ export function BottomNavigationBar({ items }: BottomNavigationBarProps) {
               size={24}
               color={item.isActive ? "#3B82F6" : "#333333"}
             />
+            {item.badge && item.badge > 0 && (
+              <View style={styles.badge}>
+                <ThemedText style={styles.badgeText}>{item.badge}</ThemedText>
+              </View>
+            )}
           </View>
           <ThemedText
             style={[
