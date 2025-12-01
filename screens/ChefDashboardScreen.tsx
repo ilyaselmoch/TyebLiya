@@ -223,26 +223,28 @@ export default function ChefDashboardScreen({ navigation }: Props) {
           <ThemedText style={styles.logoTextHeader}>TL</ThemedText>
         </View>
         <ThemedText style={styles.appNameTopHeader}>Tyeb Liya</ThemedText>
-        <Pressable
-          onPress={() => setIsOpen(!isOpen)}
-          style={[
-            styles.availabilityToggle,
-            { backgroundColor: isOpen ? AppColors.mintGreen : AppColors.terracotta },
-          ]}
-        >
-          <Feather
-            name={isOpen ? "check-circle" : "x-circle"}
-            size={14}
-            color={AppColors.white}
-          />
-        </Pressable>
+        <View style={styles.headerRightButtons}>
+          <Pressable
+            onPress={() => setIsOpen(!isOpen)}
+            style={[
+              styles.availabilityToggle,
+              { backgroundColor: isOpen ? AppColors.mintGreen : AppColors.terracotta },
+            ]}
+          >
+            <Feather
+              name={isOpen ? "check-circle" : "x-circle"}
+              size={14}
+              color={AppColors.white}
+            />
+          </Pressable>
 
-        <Pressable
-          onPress={() => navigation.navigate("ChefProfileSettings")}
-          style={styles.profileButton}
-        >
-          <Feather name="user" size={18} color={AppColors.white} />
-        </Pressable>
+          <Pressable
+            onPress={() => navigation.navigate("ChefProfileSettings")}
+            style={styles.profileButton}
+          >
+            <Feather name="user" size={18} color={AppColors.white} />
+          </Pressable>
+        </View>
       </View>
 
       {/* MAIN CONTENT */}
@@ -465,6 +467,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.sm,
     borderRadius: BorderRadius.full,
+  },
+  headerRightButtons: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: Spacing.sm,
   },
   profileButton: {
     width: 38,
