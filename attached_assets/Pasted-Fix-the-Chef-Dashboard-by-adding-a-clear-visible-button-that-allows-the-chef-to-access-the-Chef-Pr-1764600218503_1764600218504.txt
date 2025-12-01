@@ -1,0 +1,70 @@
+Fix the Chef Dashboard by adding a clear, visible button that allows the chef to access the “Chef Profile Settings” page.
+
+--------------------------------------
+🔧 REQUIRED FIX
+--------------------------------------
+Add a **Profile button** to the Chef Dashboard UI.  
+Place it in the **top-right corner** of the header, next to the availability toggle.
+
+--------------------------------------
+📍 PLACEMENT + DESIGN INSTRUCTIONS
+--------------------------------------
+Inside the Chef Dashboard header (sticky header at the top):
+
+• Right side:  
+   Add a small rounded button with:
+   - Icon: user/profile icon (outline)  
+   - Size: 38x38 px (rounded-full)  
+   - Background: terracotta (#D96E48)  
+   - Icon color: white  
+   - Shadow: shadow-md  
+   - Hover: scale-105  
+
+• Position it to the right of the availability toggle  
+  → 12px spacing between toggle and profile button  
+
+--------------------------------------
+🧭 NAVIGATION LOGIC
+--------------------------------------
+When this new Profile button is clicked:
+→ navigate to the route: **/chef/profile**
+
+If routing is not set up:
+• Create a React Router route for:  
+  `<Route path="/chef/profile" element={<ChefProfileSettings />} />`
+
+• Make sure the main layout includes React Router:
+  `import { BrowserRouter as Router, Route, Routes } from "react-router-dom";`
+
+• Wrap the app in `<Router>`.
+
+--------------------------------------
+📁 COMPONENT IMPORT
+--------------------------------------
+Ensure the dashboard imports the Profile icon:
+`import { User } from "lucide-react";`
+
+--------------------------------------
+🖼 BUTTON CODE (IN HEADER)
+--------------------------------------
+Add this inside the right side of the header:
+
+<button 
+  onClick={() => navigate("/chef/profile")}
+  className="w-10 h-10 flex items-center justify-center rounded-full bg-[#D96E48] shadow-md text-white hover:scale-105 transition"
+>
+  <User size={20} />
+</button>
+
+--------------------------------------
+🧪 TESTING INSTRUCTIONS
+--------------------------------------
+1. Open the Chef Dashboard page  
+2. Confirm the Profile icon appears top-right  
+3. Tap the button  
+4. Ensure it navigates to the Chef Profile Settings screen  
+5. If not working, ensure routing is properly set  
+
+--------------------------------------
+END OF INSTRUCTIONS
+--------------------------------------

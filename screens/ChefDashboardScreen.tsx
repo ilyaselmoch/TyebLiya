@@ -236,6 +236,13 @@ export default function ChefDashboardScreen({ navigation }: Props) {
             color={AppColors.white}
           />
         </Pressable>
+
+        <Pressable
+          onPress={() => navigation.navigate("ChefProfileSettings")}
+          style={styles.profileButton}
+        >
+          <Feather name="user" size={18} color={AppColors.white} />
+        </Pressable>
       </View>
 
       {/* MAIN CONTENT */}
@@ -458,6 +465,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.sm,
     borderRadius: BorderRadius.full,
+  },
+  profileButton: {
+    width: 38,
+    height: 38,
+    borderRadius: BorderRadius.full,
+    backgroundColor: AppColors.terracotta,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 3,
+    elevation: 3,
   },
 
   // ========== SUMMARY CARDS ==========
