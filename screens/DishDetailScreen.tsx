@@ -443,8 +443,8 @@ const styles = StyleSheet.create({
   },
   dishType: {
     fontSize: 14,
-    fontWeight: "400",
-    color: AppColors.gray600,
+    fontWeight: "500",
+    color: AppColors.terracotta,
   },
   favoriteButton: {
     padding: Spacing.sm,
@@ -467,13 +467,13 @@ const styles = StyleSheet.create({
   ratingText: {
     fontSize: 12,
     fontWeight: "600",
-    color: AppColors.gray600,
+    color: AppColors.warmBrown,
     marginLeft: Spacing.xs,
   },
   prepTime: {
     fontSize: 13,
     fontWeight: "600",
-    color: AppColors.dark,
+    color: AppColors.warmBrown,
   },
 
   // Chef Card
@@ -575,10 +575,12 @@ const styles = StyleSheet.create({
     gap: Spacing.md,
   },
   reviewCard: {
-    backgroundColor: AppColors.gray100,
+    backgroundColor: AppColors.white,
     borderRadius: BorderRadius.md,
     padding: Spacing.md,
     gap: Spacing.sm,
+    borderWidth: 1,
+    borderColor: AppColors.sandBeige,
   },
   reviewHeader: {
     flexDirection: "row",
@@ -596,8 +598,8 @@ const styles = StyleSheet.create({
   },
   reviewUserName: {
     fontSize: 13,
-    fontWeight: "600",
-    color: AppColors.dark,
+    fontWeight: "700",
+    color: AppColors.warmBrown,
   },
   reviewStars: {
     flexDirection: "row",
@@ -654,8 +656,8 @@ const styles = StyleSheet.create({
   },
   quantityLabel: {
     fontSize: 14,
-    fontWeight: "600",
-    color: AppColors.dark,
+    fontWeight: "700",
+    color: AppColors.warmBrown,
   },
   quantitySelector: {
     flexDirection: "row",
@@ -683,8 +685,8 @@ const styles = StyleSheet.create({
   },
   quantityValue: {
     fontSize: 14,
-    fontWeight: "600",
-    color: AppColors.dark,
+    fontWeight: "700",
+    color: AppColors.warmBrown,
     minWidth: 30,
     textAlign: "center",
   },
@@ -696,7 +698,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.sm,
     fontSize: 14,
-    color: AppColors.dark,
+    color: AppColors.warmBrown,
     minHeight: 60,
   },
   addToCartButton: {
