@@ -11,11 +11,14 @@ import {
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { ScreenScrollView } from "@/components/ScreenScrollView";
+import { BottomNavigationBar } from "@/components/BottomNavigationBar";
 import { Spacing, AppColors, BorderRadius } from "@/constants/theme";
+import { AppStackParamList } from "@/navigation/AppStackNavigator";
 
 // ============================================================================
 // MOCK DATA - Same as in ClientHomeScreen
@@ -155,11 +158,9 @@ const DishImageSquare: React.FC<{ imageUrl: string; width: number }> = ({
 // MAIN COMPONENT
 // ============================================================================
 
-export default function DishDetailScreen({
-  route,
-}: {
-  route: { params?: { dishId?: string } };
-}) {
+type Props = NativeStackScreenProps<AppStackParamList, "DishDetail">;
+
+export default function DishDetailScreen({ route, navigation }: Props) {
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const dishId = route.params?.dishId || "1";
@@ -177,8 +178,50 @@ export default function DishDetailScreen({
 
   const totalPrice = (dish.price || 75) * quantity;
 
+  const navItems = [
+    {
+      name: "ClientHome",
+      icon: "home",
+      label: "Home",
+      onPress: () => navigation.navigate("ClientHome"),
+      isActive: false,
+    },
+    {
+      name: "ClientOrders",
+      icon: "clipboard",
+      label: "Orders",
+      onPress: () => navigation.navigate("ClientOrders"),
+      isActive: false,
+    },
+    {
+      name: "ClientMenu",
+      icon: "menu",
+      label: "Menu",
+      onPress: () => navigation.navigate("ClientMenu"),
+      isActive: false,
+    },
+    {
+      name: "ClientProfile",
+      icon: "user",
+      label: "Profile",
+      onPress: () => navigation.navigate("ClientProfile"),
+      isActive: false,
+    },
+  ];
+
   return (
     <ThemedView style={styles.container}>
+      {/* STICKY HEADER WITH GO-BACK BUTTON */}
+      <View style={[styles.stickyHeader, { paddingTop: insets.top }]}>
+        <Pressable
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        >
+          <Feather name="chevron-left" size={28} color={AppColors.terracotta} />
+        </Pressable>
+      </View>
+
       <ScreenScrollView>
         {/* DISH IMAGE SQUARE */}
         <View style={styles.imageSection}>
@@ -395,6 +438,9 @@ export default function DishDetailScreen({
           </ThemedText>
         </Pressable>
       </View>
+
+      {/* BOTTOM NAVIGATION BAR */}
+      <BottomNavigationBar items={navItems} />
     </ThemedView>
   );
 }
@@ -407,6 +453,30 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: AppColors.lightBeige,
+  },
+
+  // Sticky Header
+  stickyHeader: {
+    backgroundColor: AppColors.sandBeige,
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.md,
+    flexDirection: "row",
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  backButton: {
+    width: 44,
+    height: 44,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: BorderRadius.full,
+    backgroundColor: AppColors.white,
+    borderWidth: 1.5,
+    borderColor: AppColors.terracotta,
   },
 
   // Dish Image Square
@@ -635,7 +705,7 @@ const styles = StyleSheet.create({
   // Sticky Order Section
   stickyOrderSection: {
     position: "absolute",
-    bottom: 0,
+    bottom: 70,
     left: 0,
     right: 0,
     backgroundColor: AppColors.lightBeige,
