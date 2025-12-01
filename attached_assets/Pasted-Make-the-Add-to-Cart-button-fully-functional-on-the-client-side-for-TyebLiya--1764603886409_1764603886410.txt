@@ -1,0 +1,62 @@
+Make the “Add to Cart” button fully functional on the client side for TyebLiya.
+
+--------------------------------------
+1) BUTTON BEHAVIOR
+--------------------------------------
+- When clicked, the selected dish (with quantity, price, and chef info) should be added to a **Cart state**.
+- Update a **mock orders array** in React to simulate real order creation.
+- Show a small toast/alert animation: “Added to Cart!” for 1-2 seconds.
+- Disable double clicks while adding to prevent duplicates, or increment quantity if the same dish is clicked again.
+
+--------------------------------------
+2) DATA STRUCTURE (MOCK)
+--------------------------------------
+Use this mock structure for cart items:
+
+const cart = [
+  {
+    id: 1,
+    dishName: "Couscous Royal",
+    chefName: "Chef Youssef",
+    price: 45,
+    quantity: 2,
+    img: "https://picsum.photos/200/200?1"
+  }
+];
+
+- On Add to Cart click, push a new item to the cart array, or increment quantity if it already exists.
+
+--------------------------------------
+3) CART / ORDERS FLOW
+--------------------------------------
+- Create a temporary “Orders” array to simulate client orders:
+
+const orders = [];
+
+- When user clicks “Checkout” (or confirm), push cart items into `orders`.
+- Each order should include:
+  - Dish info
+  - Chef info
+  - Client info (mock)
+  - Status: Pending
+  - Timestamp
+
+--------------------------------------
+4) UI FEEDBACK
+--------------------------------------
+- Show a small badge/counter in the bottom nav cart icon indicating the number of items.
+- Animate button press (scale 1.05, shadow increase) to indicate action.
+- Optional: highlight added items in the list briefly.
+
+--------------------------------------
+5) ROUTING
+--------------------------------------
+- Clicking “View Cart” or “Orders” in bottom navigation should display the `orders` array.
+- Ensure orders appear immediately after adding items from “Add to Cart” buttons.
+
+--------------------------------------
+6) COMMENTS
+--------------------------------------
+- Include clear code comments explaining how cart state is updated.
+- Include comments about mock orders array and status flow.
+- Add placeholders for future Supabase integration.
