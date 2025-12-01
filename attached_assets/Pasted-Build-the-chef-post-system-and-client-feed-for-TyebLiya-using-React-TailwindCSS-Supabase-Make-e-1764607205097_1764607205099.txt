@@ -1,0 +1,109 @@
+Build the chef post system and client feed for TyebLiya using React + TailwindCSS + Supabase. Make everything mobile-first, clean, and warm Moroccan style.
+
+--------------------------------------
+1) DATABASE SETUP (Supabase)
+--------------------------------------
+Create these tables:
+
+1) Chefs
+- id (UUID, primary key)
+- user_id (linked to auth users)
+- name (text)
+- profile_photo (text URL)
+- experience (integer)
+- specialities (array of text)
+- availability (boolean)
+- created_at (timestamp)
+
+2) Dishes
+- id (UUID, primary key)
+- chef_id (foreign key → Chefs.id)
+- title (text)
+- description (text)
+- photo_url (text)
+- price (numeric)
+- prep_time (text)
+- status (text: available / hidden)
+- rating (numeric, optional)
+- created_at (timestamp)
+
+3) Orders (optional for later)
+- id (UUID)
+- client_id (auth user)
+- dish_id (foreign key → Dishes.id)
+- quantity
+- status (Pending / Cooking / Delivered)
+- total_price
+- created_at
+
+--------------------------------------
+2) CHEF POST CREATION PAGE
+--------------------------------------
+- Form with inputs:
+  - Dish title
+  - Description
+  - Photo upload (Supabase storage or URL)
+  - Price
+  - Prep time
+  - Status toggle (available / hidden)
+- On submit:
+  - Insert new record into **Dishes table** in Supabase with current chef_id
+  - Show success toast: "Dish added successfully!"
+- Validate fields: all required except optional rating
+- Style: rounded inputs, soft shadows, warm Moroccan colors
+
+--------------------------------------
+3) CLIENT FEED / HOME PAGE
+--------------------------------------
+- Query **Dishes table** where status = available
+- Join with **Chefs table** to get chef name, photo, rating
+- Display horizontally scrollable sections:
+  - Recommended Dishes
+  - Top Dishes Today
+  - Recommended Chefs
+- Each dish card shows:
+  - Photo
+  - Dish title
+  - Chef name + profile photo
+  - Rating stars
+  - Price
+- Each chef card shows:
+  - Profile photo
+  - Name
+  - Rating
+- Add “Add to Cart” button on each dish
+- Bottom navigation bar stays visible
+
+--------------------------------------
+4) NAVIGATION AND INTERACTION
+--------------------------------------
+- Clicking a dish opens **Dish Details Page** (client mode)
+- Clicking Add to Cart adds to local cart state (or Orders table later)
+- Clicking a chef opens **Chef Profile Page**
+- Ensure routing with React Router or equivalent
+- Keep bottom navigation visible on all screens
+
+--------------------------------------
+5) MOCK DATA FOR TESTING
+--------------------------------------
+- Create 3-5 mock chefs and 5-10 mock dishes with photos, prices, ratings
+- Use arrays in React state or Supabase select query with LIMIT for initial mock
+
+Example:
+
+const chefs = [
+  { id: 1, name: "Youssef Benali", profile_photo: "...", rating: 4.9 },
+  { id: 2, name: "Sara El Malki", profile_photo: "...", rating: 4.8 },
+]
+
+const dishes = [
+  { id: 1, chef_id: 1, title: "Couscous Royal", photo_url: "...", price: 45, rating: 4.9 },
+  { id: 2, chef_id: 2, title: "Harira", photo_url: "...", price: 25, rating: 4.8 },
+]
+
+--------------------------------------
+6) COMMENTS
+--------------------------------------
+- Add clear comments for each section: Supabase queries, form submission, card rendering, and navigation
+- Include notes on where to replace mock data with live Supabase data
+- Add placeholders for future enhancements: filters, city, categories
