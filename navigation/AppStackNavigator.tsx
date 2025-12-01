@@ -12,6 +12,7 @@ import ChefMenuScreen from "@/screens/ChefMenuScreen";
 import ClientOrdersScreen from "@/screens/ClientOrdersScreen";
 import ClientMenuScreen from "@/screens/ClientMenuScreen";
 import ClientProfileScreen from "@/screens/ClientProfileScreen";
+import ChefPostCreationScreen from "@/screens/ChefPostCreationScreen";
 import { useTheme } from "@/hooks/useTheme";
 import { getCommonScreenOptions } from "@/navigation/screenOptions";
 import { useAuth } from "@/context/AuthContext";
@@ -27,6 +28,7 @@ export type AppStackParamList = {
   ChefOrders: undefined;
   ChefMenu: undefined;
   ChefProfile: undefined;
+  ChefPostCreation: undefined;
   ChefOrderDetails: { orderId: string };
   DishDetail: { dishId: string };
 };
@@ -118,6 +120,11 @@ export default function AppStackNavigator() {
       <Stack.Screen
         name="ChefProfile"
         component={ChefProfileSettingsScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ChefPostCreation"
+        component={ChefPostCreationScreen}
         options={{ headerShown: false }}
       />
 
