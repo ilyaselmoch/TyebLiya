@@ -1,0 +1,191 @@
+Create a full "Chef Order Details" screen for TyebLiya using React + TailwindCSS.
+This screen should open when the chef taps an order card on the Chef Dashboard.
+Follow the design rules very strictly and make everything mobile-first and visually consistent.
+
+---------------------------------------
+🌙 GLOBAL DESIGN RULES (IMPORTANT)
+---------------------------------------
+• Warm Moroccan color palette:
+  - Terracotta: #D96E48
+  - Saffron: #E6A500
+  - Mint Green: #7BC8A4
+  - Beige: #F3E7D3
+  - Deep Brown Text: #4A2E1F
+
+• Rounded corners: 2xl for cards, xl for images, full for buttons
+• Soft shadows on all cards and buttons
+• Smooth hover animations (scale 1.03, transition 150ms)
+• Clean typography, medium-bold for section titles
+• Respond perfectly on mobile
+• Add clear comments for every section
+
+---------------------------------------
+📌 SCREEN STRUCTURE
+---------------------------------------
+
+=======================================
+1) TOP HEADER (STICKY)
+=======================================
+• Height: 70px
+• Background color: Beige (#F3E7D3)
+• Soft bottom shadow
+• Layout:
+   - Left: Back arrow icon (terracotta)
+   - Center: Title: “Order Details”
+   - Right: Order status badge
+
+STATUS BADGES COLORS:
+• Pending  → Light beige background + brown text
+• Accepted → Mint green background
+• Cooking  → Saffron background
+• Ready    → Mint green + darker border
+
+Header must stay sticky at the top on scroll.
+
+=======================================
+2) CLIENT INFO CARD
+=======================================
+• Beige background
+• Rounded-2xl
+• Soft shadow
+• Padding: p-4
+• Margin-bottom: mb-4
+• Inside:
+   - Client avatar (circle, 60px)
+   - Client name (bold)
+   - Phone number
+   - Delivery address
+
+Layout: horizontal on large screens, vertical on mobile.
+
+=======================================
+3) ORDER ITEMS SECTION
+=======================================
+Section Title: “Ordered Items” (terracotta text, text-xl, font-semibold)
+
+For each item, create a rounded card:
+• Soft shadow
+• p-4, mb-3
+• Layout:
+   - Left: Dish image (80px, rounded-xl)
+   - Middle:
+       - Dish name (bold)
+       - Quantity (e.g., “x2”)
+       - Price (per item)
+   - Right:
+       - Total price = price * qty
+       - Bold
+
+Use mock data for the items.
+
+=======================================
+4) ORDER SUMMARY CARD
+=======================================
+Beige card with shadow and rounded-xl.
+Inside display:
+
+- Subtotal
+- Delivery fee
+- Platform fee
+- Divider
+- Total (large, bold, dark brown)
+
+Ensure clean spacing using flex-col + gap-2.
+
+=======================================
+5) ORDER STATUS TIMELINE
+=======================================
+Create a visual timeline row with 4 steps:
+
+Pending → Accepted → Cooking → Ready
+
+• Each step uses:
+   - A small circle
+   - A label under the circle
+• Highlight the CURRENT status:
+   - Terracotta or saffron circle depending on status
+   - Darker text
+• Inactive steps: light gray
+
+Below show text: “Current status: {status}”
+
+=======================================
+6) ACTION BUTTONS (DYNAMIC)
+=======================================
+Show different buttons depending on order.status.
+
+If status === "Pending":
+   • Accept Order (mint green, full width, rounded-full, shadow)
+   • Decline Order (terracotta, full width, rounded-full)
+
+If status === "Accepted":
+   • Start Cooking (saffron button, bold)
+
+If status === "Cooking":
+   • Mark as Ready (mint green, bold)
+
+If status === "Ready":
+   • Completed (disabled mint green light button)
+
+Buttons must be:
+• Full width on mobile
+• Rounded-full
+• Shadow-md
+• Hover: scale 1.03
+
+=======================================
+7) NOTES SECTION
+=======================================
+Rounded beige card
+p-4
+shadow-md
+mb-8
+
+Inside:
+- Title: “Notes from Client”
+- Client note text (mock)
+- Divider line
+- Textarea for chef note input
+- Button: Save Note (mint green)
+
+Textarea:
+• Rounded-xl
+• Terracotta border
+• p-2
+• min-height: 80px
+
+=======================================
+🔥 MOCK DATA (USE THIS EXACT STRUCTURE)
+=======================================
+Use this in the component so the page renders correctly:
+
+const order = {
+  id: 1,
+  status: "Cooking",
+  client: {
+    name: "Sara El Malki",
+    avatar: "https://i.pravatar.cc/150?img=12",
+    address: "Boulevard Hassan II, Casablanca",
+    phone: "0654 123 987"
+  },
+  items: [
+    { id: 1, name: "Couscous Royal", qty: 2, price: 45, img: "https://picsum.photos/200/200?1" },
+    { id: 2, name: "Harira", qty: 1, price: 25, img: "https://picsum.photos/200/200?2" }
+  ],
+  fees: {
+    delivery: 10,
+    platform: 5
+  },
+  notes: "Please no spicy."
+};
+
+=======================================
+🧭 ROUTING REQUIREMENT
+=======================================
+• This screen must be accessible via route: /chef/order/:id
+• Use mock data to simulate loading order info by ID
+• Add props or context later if needed
+
+---------------------------------------
+END OF INSTRUCTIONS
+---------------------------------------

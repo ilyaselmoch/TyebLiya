@@ -9,12 +9,16 @@ import {
   Alert,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { ScreenScrollView } from "@/components/ScreenScrollView";
 import { useAuth } from "@/context/AuthContext";
 import { Spacing, AppColors, BorderRadius } from "@/constants/theme";
+import { AppStackParamList } from "@/navigation/AppStackNavigator";
+
+type Props = NativeStackScreenProps<AppStackParamList, "ChefDashboard">;
 
 // ============================================================================
 // MOCK DATA TYPES AND ARRAYS
@@ -171,7 +175,7 @@ const StatusBadge: React.FC<{ status: string }> = ({ status }) => {
 // MAIN COMPONENT
 // ============================================================================
 
-export default function ChefDashboardScreen() {
+export default function ChefDashboardScreen({ navigation }: Props) {
   const { user, signOut } = useAuth();
   const { width } = useWindowDimensions();
 
@@ -273,7 +277,11 @@ export default function ChefDashboardScreen() {
           {orders.length > 0 ? (
             <View style={styles.ordersList}>
               {orders.map((order) => (
-                <View key={order.id} style={styles.orderCard}>
+                <Pressable
+                  key={order.id}
+                  onPress={() => navigation.navigate("ChefOrderDetails", { orderId: order.id })}
+                >
+                  <View style={styles.orderCard}>
                   {/* Left: Dish Image */}
                   <Image source={{ uri: order.dishImage }} style={styles.orderDishImage} />
 
@@ -334,7 +342,8 @@ export default function ChefDashboardScreen() {
                       </View>
                     )}
                   </View>
-                </View>
+                  </View>
+                </Pressable>
               ))}
             </View>
           ) : (

@@ -2,6 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ClientHomeScreen from "@/screens/ClientHomeScreen";
 import ChefDashboardScreen from "@/screens/ChefDashboardScreen";
+import ChefOrderDetailsScreen from "@/screens/ChefOrderDetailsScreen";
 import RoleLoadingScreen from "@/screens/RoleLoadingScreen";
 import RoleSelectionScreen from "@/screens/RoleSelectionScreen";
 import DishDetailScreen from "@/screens/DishDetailScreen";
@@ -15,6 +16,7 @@ export type AppStackParamList = {
   RoleSelection: undefined;
   ClientHome: undefined;
   ChefDashboard: undefined;
+  ChefOrderDetails: { orderId: string };
   DishDetail: { dishId: string };
 };
 
@@ -78,6 +80,15 @@ export default function AppStackNavigator() {
         component={ChefDashboardScreen}
         options={{
           headerTitle: () => <HeaderTitle title="Tyeb Liya - Cuisinier" />,
+        }}
+      />
+
+      {/* Chef Order Details Screen */}
+      <Stack.Screen
+        name="ChefOrderDetails"
+        component={ChefOrderDetailsScreen}
+        options={{
+          headerShown: false,
         }}
       />
 
