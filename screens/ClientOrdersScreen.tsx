@@ -139,6 +139,19 @@ export default function ClientOrdersScreen({ navigation }: Props) {
 
   return (
     <ThemedView style={styles.container}>
+      {/* HEADER */}
+      <View style={styles.header}>
+        <Pressable
+          style={styles.backButton}
+          onPress={() => navigation.navigate("ClientHome")}
+        >
+          <Feather name="arrow-left" size={24} color={AppColors.terracotta} />
+        </Pressable>
+        <ThemedText style={styles.headerTitle}>
+          {cart.length > 0 ? "Cart & Orders" : "Your Orders"}
+        </ThemedText>
+      </View>
+
       <ScreenKeyboardAwareScrollView
         contentContainerStyle={{ paddingBottom: Spacing.xl }}
       >
@@ -307,6 +320,28 @@ export default function ClientOrdersScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+
+  // ========== HEADER ==========
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.md,
+    backgroundColor: AppColors.sandBeige,
+    gap: Spacing.md,
+  },
+  backButton: {
+    width: 40,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  headerTitle: {
+    flex: 1,
+    fontSize: 20,
+    fontWeight: "700",
+    color: AppColors.warmBrown,
   },
 
   // ========== SECTIONS ==========

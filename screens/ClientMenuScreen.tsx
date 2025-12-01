@@ -184,6 +184,12 @@ export default function ClientMenuScreen({ navigation }: Props) {
     <ThemedView style={styles.container}>
       {/* HEADER */}
       <View style={styles.header}>
+        <Pressable
+          style={styles.backButton}
+          onPress={() => navigation.navigate("ClientHome")}
+        >
+          <Feather name="arrow-left" size={24} color={AppColors.terracotta} />
+        </Pressable>
         <ThemedText style={styles.headerTitle}>Menu</ThemedText>
         {cartCount > 0 && (
           <View style={styles.cartBadge}>
@@ -291,13 +297,21 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignItems: "center",
     paddingHorizontal: Spacing.md,
     paddingVertical: Spacing.md,
     backgroundColor: AppColors.sandBeige,
+    gap: Spacing.md,
+  },
+  backButton: {
+    width: 40,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
   },
   headerTitle: {
+    flex: 1,
     fontSize: 24,
     fontWeight: "700",
     color: AppColors.warmBrown,
