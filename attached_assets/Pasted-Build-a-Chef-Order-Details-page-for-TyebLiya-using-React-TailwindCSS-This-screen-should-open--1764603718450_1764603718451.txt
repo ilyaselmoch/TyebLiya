@@ -1,0 +1,123 @@
+Build a “Chef Order Details” page for TyebLiya using React + TailwindCSS. 
+This screen should open when a chef taps an order from the Chef Dashboard. 
+Make it mobile-first, modern, and warm Moroccan style using these colors:
+- Terracotta: #D96E48
+- Saffron: #E6A500
+- Mint Green: #7BC8A4
+- Beige: #F3E7D3
+- Dark Brown: #4A2E1F
+
+--------------------------
+1) HEADER
+--------------------------
+- Sticky top, height 70px, beige background
+- Left: back arrow (terracotta)
+- Center: title “Order Details” in dark brown
+- Right: order status badge: Pending, Accepted, Cooking, or Ready
+  - Pending → beige with brown text
+  - Accepted → mint green
+  - Cooking → saffron
+  - Ready → mint green with darker border
+- Add soft shadow below
+
+--------------------------
+2) CLIENT INFO CARD
+--------------------------
+- Rounded-2xl beige card with shadow, p-4, mb-4
+- Content: 
+  - Client avatar (circle, 60px)
+  - Client name (bold)
+  - Phone number
+  - Address
+- Layout: vertical on mobile, horizontal on larger screens
+
+--------------------------
+3) ORDER ITEMS SECTION
+--------------------------
+- Title: “Ordered Items” in terracotta, text-xl, font-semibold
+- For each item, create a card:
+  - Rounded-xl, shadow, p-4, mb-3
+  - Left: dish image (80px, rounded-xl)
+  - Middle: dish name (bold), quantity, price per item
+  - Right: total price
+- Use mock data
+
+--------------------------
+4) ORDER SUMMARY CARD
+--------------------------
+- Rounded-xl beige card with shadow, p-4, mb-4
+- Display:
+  - Subtotal
+  - Delivery fee
+  - Platform fee
+  - Divider
+  - Total (bold, larger font, dark brown)
+- Use spacing between rows
+
+--------------------------
+5) ORDER TIMELINE
+--------------------------
+- Horizontal row: Pending → Accepted → Cooking → Ready
+- Current step highlighted in terracotta or saffron
+- Inactive steps: light gray
+- Below: text “Current status: {status}”
+
+--------------------------
+6) ACTION BUTTONS (DYNAMIC)
+--------------------------
+- Full-width, rounded-full, shadow-md, hover scale-1.03
+- Logic based on order.status:
+  - Pending: Accept Order (mint green), Decline Order (terracotta)
+  - Accepted: Start Cooking (saffron)
+  - Cooking: Mark as Ready (mint green)
+  - Ready: Completed (disabled mint green)
+- Place buttons stacked vertically with spacing
+
+--------------------------
+7) NOTES SECTION
+--------------------------
+- Rounded beige card with shadow, p-4, mb-8
+- Title: “Notes from Client”
+- Display client note (mock)
+- Divider line
+- Textarea for chef note input (rounded-xl, terracotta border, p-2, min-height 80px)
+- Save Note button (mint green, full width, rounded-full)
+
+--------------------------
+8) MOCK DATA
+--------------------------
+const order = {
+  id: 1,
+  status: "Cooking",
+  client: {
+    name: "Sara El Malki",
+    avatar: "https://i.pravatar.cc/150?img=12",
+    address: "Boulevard Hassan II, Casablanca",
+    phone: "0654 123 987"
+  },
+  items: [
+    { id: 1, name: "Couscous Royal", qty: 2, price: 45, img: "https://picsum.photos/200/200?1" },
+    { id: 2, name: "Harira", qty: 1, price: 25, img: "https://picsum.photos/200/200?2" }
+  ],
+  fees: {
+    delivery: 10,
+    platform: 5
+  },
+  notes: "Please no spicy."
+}
+
+--------------------------
+9) ROUTING
+--------------------------
+- Accessible via route: /chef/order/:id
+- Use mock data to simulate loading order by ID
+- Ensure clicking back arrow returns to Chef Dashboard
+
+--------------------------
+10) COMMENTS
+--------------------------
+- Add comments for each section: Header, Client Info, Order Items, Summary, Timeline, Buttons, Notes
+- Include notes about mock data and dynamic button behavior
+
+--------------------------
+END OF PROMPT
