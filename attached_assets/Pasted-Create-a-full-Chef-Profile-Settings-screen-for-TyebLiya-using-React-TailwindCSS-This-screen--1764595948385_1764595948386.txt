@@ -1,0 +1,208 @@
+Create a full “Chef Profile Settings” screen for TyebLiya using React + TailwindCSS.  
+This screen should be visually consistent with the Chef Dashboard.  
+Follow all instructions EXACTLY — styling, colors, placements, and interactions.
+
+---------------------------------------
+🌙 GLOBAL DESIGN RULES (IMPORTANT)
+---------------------------------------
+• Warm Moroccan color palette:
+  - Terracotta: #D96E48
+  - Saffron: #E6A500
+  - Mint Green: #7BC8A4
+  - Beige: #F3E7D3
+  - Deep Brown: #4A2E1F
+
+• Roundness:
+  - Cards: rounded-2xl
+  - Inputs: rounded-xl
+  - Buttons: rounded-full
+  - Avatars: rounded-full
+
+• Shadows: soft, warm shadows (shadow-md or shadow-lg)
+• Animations: hover scale-105 on buttons, 150ms transition
+• Mobile-first layout
+• Add clear section comments in the code
+
+---------------------------------------
+📌 SCREEN STRUCTURE
+---------------------------------------
+
+=======================================
+1) STICKY TOP HEADER
+=======================================
+• Height: 70px  
+• Background: Beige (#F3E7D3)  
+• Left: Back arrow (terracotta)  
+• Center: “Profile Settings” (bold, brown)  
+• Right: Save icon button (mint green circle button)  
+• Soft bottom shadow  
+• Sticky at top  
+
+=======================================
+2) PROFILE PHOTO SECTION
+=======================================
+Centered container with:
+• Circular profile photo (120px, shadow-lg)  
+• Below: “Change Photo” button  
+  - Small  
+  - Terracotta text  
+  - Underlined  
+  - Opens native image upload  
+
+Spacing: mt-6 mb-6, gap-3  
+
+=======================================
+3) PERSONAL INFORMATION CARD
+=======================================
+A beige card with rounded-2xl + shadow-md.  
+Padding: p-5, margin-bottom mb-6.
+
+Inside add **Input Fields** (all full width, stacked):
+
+1) Full Name  
+2) Phone Number  
+3) City (dropdown)  
+   - Casablanca  
+   - Rabat  
+   - Marrakech  
+   - Fes  
+   - Tangier  
+
+4) Years of Experience (number input)
+
+Style all inputs:
+• Background: white  
+• Border: 1px solid terracotta  
+• Rounded-xl  
+• p-3  
+• Focus:border-saffron  
+• Placeholder brown/opacity-70  
+
+Label style:
+• Text-sm  
+• font-medium  
+• Brown color  
+
+---------------------------------------
+4) SPECIALITIES SECTION
+---------------------------------------
+Title: “Your Specialities” (terracotta, font-semibold, text-lg)
+
+Below it:  
+A grid of pill-shaped selectable buttons:
+
+Example items (mock):
+- Couscous  
+- Tajine  
+- Harira  
+- Pastilla  
+- Briouates  
+- Rfissa  
+- Grillades  
+- Salades marocaines  
+
+Pill design:
+• Rounded-full  
+• px-4 py-2  
+• Shadow-sm  
+• Border terracotta  
+• Selected state: terracotta background + white text  
+• Unselected: white background + terracotta text  
+
+User can select multiple.
+
+---------------------------------------
+5) KITCHEN DETAILS CARD
+---------------------------------------
+Another rounded beige card with p-5 and shadow.
+
+Inside fields:
+1) Kitchen Name (input)
+2) Preparation Time Range (dropdown: “10–20 min”, “20–40 min”, “40–60 min”)
+3) Delivery Radius  
+4) Availability Toggle
+    - Oval switch  
+    - Green when ON  
+    - Red when OFF  
+
+---------------------------------------
+6) PAYMENT SETTINGS SECTION
+---------------------------------------
+Add a section with title: “Payment Settings”.
+
+Inside a beige card (rounded-xl + shadow-md):
+
+Fields:
+1) Bank Name  
+2) Account Owner Name  
+3) RIB (Bank account number)  
+
+Below → a Mint Green button:
+“Add / Update Payment Info”  
+(full width, rounded-full, shadow, hover scale-105)
+
+---------------------------------------
+7) SECURITY SETTINGS SECTION
+---------------------------------------
+Title: “Security”.
+
+Inside card:
+• Change Password (3 inputs)
+  - Current Password  
+  - New Password  
+  - Confirm New Password  
+
+• Save Password button (terracotta, rounded-full, full-width).
+
+---------------------------------------
+8) LOGOUT BUTTON
+=======================================
+At bottom of page:
+• Full-width terracotta button  
+• White bold text  
+• Rounded-full  
+• Shadow-lg  
+• Hover scale-105  
+
+Label: “Log Out”
+
+---------------------------------------
+🔥 MOCK DATA (USE THIS EXACT STRUCTURE)
+---------------------------------------
+const chefProfile = {
+  name: "Youssef Benali",
+  phone: "0650 987 321",
+  city: "Casablanca",
+  experience: 4,
+  kitchenName: "Dar Youssef",
+  prepTime: "20-40 min",
+  deliveryRadius: "5 km",
+  isAvailable: true,
+  specialities: ["Tajine", "Harira", "Rfissa"],
+  payment: {
+    bank: "Attijariwafa Bank",
+    owner: "Youssef Benali",
+    rib: "1234 5678 9012 3456 7890 123"
+  }
+};
+
+---------------------------------------
+🔁 INTERACTIONS REQUIRED
+---------------------------------------
+• “Save” icon in header saves all profile fields  
+• “Change Photo” opens file picker  
+• Specialities pills toggle active state  
+• Availability switch updates boolean  
+• Payment button shows mock alert  
+• Change password validates matching fields  
+• Logout button triggers dummy logout  
+
+---------------------------------------
+🧭 ROUTING
+---------------------------------------
+This page should be accessible from route:  
+/chef/profile
+
+---------------------------------------
+END OF INSTRUCTIONS
+---------------------------------------

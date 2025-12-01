@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ClientHomeScreen from "@/screens/ClientHomeScreen";
 import ChefDashboardScreen from "@/screens/ChefDashboardScreen";
 import ChefOrderDetailsScreen from "@/screens/ChefOrderDetailsScreen";
+import ChefProfileSettingsScreen from "@/screens/ChefProfileSettingsScreen";
 import RoleLoadingScreen from "@/screens/RoleLoadingScreen";
 import RoleSelectionScreen from "@/screens/RoleSelectionScreen";
 import DishDetailScreen from "@/screens/DishDetailScreen";
@@ -17,6 +18,7 @@ export type AppStackParamList = {
   ClientHome: undefined;
   ChefDashboard: undefined;
   ChefOrderDetails: { orderId: string };
+  ChefProfileSettings: undefined;
   DishDetail: { dishId: string };
 };
 
@@ -87,6 +89,15 @@ export default function AppStackNavigator() {
       <Stack.Screen
         name="ChefOrderDetails"
         component={ChefOrderDetailsScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+
+      {/* Chef Profile Settings Screen */}
+      <Stack.Screen
+        name="ChefProfileSettings"
+        component={ChefProfileSettingsScreen}
         options={{
           headerShown: false,
         }}
