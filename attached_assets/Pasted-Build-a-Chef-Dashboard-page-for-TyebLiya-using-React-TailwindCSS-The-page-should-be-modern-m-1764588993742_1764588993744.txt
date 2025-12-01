@@ -1,0 +1,71 @@
+Build a **Chef Dashboard page** for TyebLiya using React + TailwindCSS. The page should be modern, mobile-first, warm Moroccan style (terracotta, saffron, beige, mint green) with soft rounded cards and smooth shadows. Include mock data for testing.
+
+STRUCTURE:
+
+1. HEADER (Top sticky)
+- Height: 80px, background: sand beige (#F3E7D3)
+- Left: Chef profile photo (circle, 60px) with soft shadow
+- Center: "Welcome, {Chef Name}!" in dark brown
+- Right: Availability toggle switch: 🟢 Open / 🔴 Closed (rounded, terracotta accent)
+- Shadow below header, sticky on scroll
+
+2. TODAY’S SUMMARY (Below header)
+- Horizontal flex row with 3 small cards, rounded corners, soft shadows
+- Card 1: "Orders Today" with number (mock: 5)
+- Card 2: "Earnings Today" with MAD amount (mock: 240 MAD)
+- Card 3: "Rating" with star icons (mock: 4.9 ⭐)
+- Cards spaced evenly, responsive on mobile
+
+3. INCOMING ORDERS
+- Vertical scrollable list of order cards
+- Each card:
+    - Left: Dish photo (square, 80px)
+    - Center:
+        - Client name (bold)
+        - Dish title
+        - Quantity
+        - Time left / status (Pending / Accepted / Cooking / Ready)
+    - Right: Buttons stacked vertically:
+        - Accept (mint green)
+        - Decline (terracotta)
+        - Start Cooking / Mark Ready (yellow accent)
+- Soft rounded cards, shadow, padding p-4, margin mb-4
+
+4. CHEF MENU (Your Dishes)
+- Section title: "Your Dishes" in terracotta
+- Grid layout (2 columns on mobile)
+- Each dish card:
+    - Image (top)
+    - Dish name, price below
+    - Status: Available / Hidden
+    - Button: Edit (mint green)
+- Big "+ Add New Dish" button at top right, rounded 20px, terracotta gradient background
+
+5. EARNINGS / STATISTICS (Optional mini cards below menu)
+- Horizontal row:
+    - This Week: 920 MAD
+    - This Month: 3,750 MAD
+- Rounded cards, soft shadow, beige background, small font
+
+6. SETTINGS / PROFILE (icon or button)
+- Top-right or bottom tab
+- Opens profile page / payment methods / logout
+
+DESIGN DETAILS:
+- Rounded corners (2xl for cards, 20px for buttons)
+- Shadows: soft drop shadows for cards/buttons
+- Typography: Clean, warm brown (#4A2E1F) for text, terracotta (#D96E48) for headings/buttons, saffron (#E6A500) for accents
+- Padding: min p-2 inside cards
+- Smooth hover animations on buttons (scale 1.05, transition 150ms)
+- Use mock data arrays for orders and dishes with images, names, prices, and statuses
+- Make entire layout responsive for mobile and tablet
+
+ADDITIONAL INTERACTIONS:
+- Clicking "Accept" changes order status visually
+- Clicking "Decline" removes order card from list (mock)
+- "+ Add New Dish" opens a modal or dummy alert for now
+- Availability toggle updates color dynamically (green/red)
+
+COMMENTS:
+- Add clear comments for each section: Header, Today Summary, Incoming Orders, Chef Menu, Earnings, Settings
+- Include comments about mock data usage and button interactions
