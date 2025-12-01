@@ -7,7 +7,11 @@ import ChefProfileSettingsScreen from "@/screens/ChefProfileSettingsScreen";
 import RoleLoadingScreen from "@/screens/RoleLoadingScreen";
 import RoleSelectionScreen from "@/screens/RoleSelectionScreen";
 import DishDetailScreen from "@/screens/DishDetailScreen";
-import { HeaderTitle } from "@/components/HeaderTitle";
+import ChefOrdersScreen from "@/screens/ChefOrdersScreen";
+import ChefMenuScreen from "@/screens/ChefMenuScreen";
+import ClientOrdersScreen from "@/screens/ClientOrdersScreen";
+import ClientMenuScreen from "@/screens/ClientMenuScreen";
+import ClientProfileScreen from "@/screens/ClientProfileScreen";
 import { useTheme } from "@/hooks/useTheme";
 import { getCommonScreenOptions } from "@/navigation/screenOptions";
 import { useAuth } from "@/context/AuthContext";
@@ -16,9 +20,14 @@ export type AppStackParamList = {
   RoleLoading: undefined;
   RoleSelection: undefined;
   ClientHome: undefined;
+  ClientOrders: undefined;
+  ClientMenu: undefined;
+  ClientProfile: undefined;
   ChefDashboard: undefined;
+  ChefOrders: undefined;
+  ChefMenu: undefined;
+  ChefProfile: undefined;
   ChefOrderDetails: { orderId: string };
-  ChefProfileSettings: undefined;
   DishDetail: { dishId: string };
 };
 
@@ -65,52 +74,63 @@ export default function AppStackNavigator() {
       initialRouteName={initialRoute}
       screenOptions={{
         ...getCommonScreenOptions({ theme, isDark }),
+        headerShown: false,
       }}
     >
-      {/* Client dashboard */}
+      {/* Client screens */}
       <Stack.Screen
         name="ClientHome"
         component={ClientHomeScreen}
-        options={{
-          headerTitle: () => <HeaderTitle title="Tyeb Liya - Client" />,
-        }}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ClientOrders"
+        component={ClientOrdersScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ClientMenu"
+        component={ClientMenuScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ClientProfile"
+        component={ClientProfileScreen}
+        options={{ headerShown: false }}
       />
 
-      {/* Chef/Cuisinier dashboard */}
+      {/* Chef screens */}
       <Stack.Screen
         name="ChefDashboard"
         component={ChefDashboardScreen}
-        options={{
-          headerTitle: () => <HeaderTitle title="Tyeb Liya - Cuisinier" />,
-        }}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ChefOrders"
+        component={ChefOrdersScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ChefMenu"
+        component={ChefMenuScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ChefProfile"
+        component={ChefProfileSettingsScreen}
+        options={{ headerShown: false }}
       />
 
-      {/* Chef Order Details Screen */}
+      {/* Detail screens */}
       <Stack.Screen
         name="ChefOrderDetails"
         component={ChefOrderDetailsScreen}
-        options={{
-          headerShown: false,
-        }}
+        options={{ headerShown: false }}
       />
-
-      {/* Chef Profile Settings Screen */}
-      <Stack.Screen
-        name="ChefProfileSettings"
-        component={ChefProfileSettingsScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
-
-      {/* Dish Detail Screen */}
       <Stack.Screen
         name="DishDetail"
         component={DishDetailScreen}
-        options={{
-          headerTitle: () => <HeaderTitle title="Dish Details" />,
-          headerBackVisible: true,
-        }}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

@@ -20,6 +20,7 @@ import { ScreenScrollView } from "@/components/ScreenScrollView";
 import { useAuth } from "@/context/AuthContext";
 import { Spacing, AppColors, BorderRadius } from "@/constants/theme";
 import { AppStackParamList } from "@/navigation/AppStackNavigator";
+import { BottomNavigationBar } from "@/components/BottomNavigationBar";
 
 // ============================================================================
 // MOCK DATA
@@ -305,6 +306,37 @@ export default function ClientHomeScreen() {
     console.log("Navigate to chef profile:", chef.id);
   };
 
+  const navItems = [
+    {
+      name: "ClientHome",
+      icon: "home",
+      label: "Home",
+      onPress: () => navigation.navigate("ClientHome"),
+      isActive: true,
+    },
+    {
+      name: "ClientOrders",
+      icon: "clipboard",
+      label: "Orders",
+      onPress: () => navigation.navigate("ClientOrders"),
+      isActive: false,
+    },
+    {
+      name: "ClientMenu",
+      icon: "menu",
+      label: "Menu",
+      onPress: () => navigation.navigate("ClientMenu"),
+      isActive: false,
+    },
+    {
+      name: "ClientProfile",
+      icon: "user",
+      label: "Profile",
+      onPress: () => navigation.navigate("ClientProfile"),
+      isActive: false,
+    },
+  ];
+
   return (
     <ThemedView style={styles.container}>
       {/* HEADER WITH LOGO AND APP NAME */}
@@ -580,6 +612,7 @@ export default function ClientHomeScreen() {
           </ScrollView>
         </View>
       </ScreenScrollView>
+      <BottomNavigationBar items={navItems} />
     </ThemedView>
   );
 }

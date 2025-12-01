@@ -18,7 +18,7 @@ import { AppColors, Spacing, BorderRadius } from "@/constants/theme";
 import { ThemedView } from "@/components/ThemedView";
 import { ScreenScrollView } from "@/components/ScreenScrollView";
 
-type Props = NativeStackScreenProps<AppStackParamList, "ChefProfileSettings">;
+type Props = NativeStackScreenProps<AppStackParamList, "ChefProfile">;
 
 // MOCK DATA
 const mockProfile = {

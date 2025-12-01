@@ -14,6 +14,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { ScreenScrollView } from "@/components/ScreenScrollView";
+import { BottomNavigationBar } from "@/components/BottomNavigationBar";
 import { useAuth } from "@/context/AuthContext";
 import { Spacing, AppColors, BorderRadius } from "@/constants/theme";
 import { AppStackParamList } from "@/navigation/AppStackNavigator";
@@ -215,6 +216,37 @@ export default function ChefDashboardScreen({ navigation }: Props) {
     );
   };
 
+  const navItems = [
+    {
+      name: "ChefDashboard",
+      icon: "home",
+      label: "Home",
+      onPress: () => navigation.navigate("ChefDashboard"),
+      isActive: true,
+    },
+    {
+      name: "ChefOrders",
+      icon: "clipboard",
+      label: "Orders",
+      onPress: () => navigation.navigate("ChefOrders"),
+      isActive: false,
+    },
+    {
+      name: "ChefMenu",
+      icon: "menu",
+      label: "Menu",
+      onPress: () => navigation.navigate("ChefMenu"),
+      isActive: false,
+    },
+    {
+      name: "ChefProfile",
+      icon: "user",
+      label: "Profile",
+      onPress: () => navigation.navigate("ChefProfile"),
+      isActive: false,
+    },
+  ];
+
   return (
     <ThemedView style={styles.container}>
       {/* HEADER WITH LOGO AND APP NAME */}
@@ -223,28 +255,19 @@ export default function ChefDashboardScreen({ navigation }: Props) {
           <ThemedText style={styles.logoTextHeader}>TL</ThemedText>
         </View>
         <ThemedText style={styles.appNameTopHeader}>Tyeb Liya</ThemedText>
-        <View style={styles.headerRightButtons}>
-          <Pressable
-            onPress={() => setIsOpen(!isOpen)}
-            style={[
-              styles.availabilityToggle,
-              { backgroundColor: isOpen ? AppColors.mintGreen : AppColors.terracotta },
-            ]}
-          >
-            <Feather
-              name={isOpen ? "check-circle" : "x-circle"}
-              size={14}
-              color={AppColors.white}
-            />
-          </Pressable>
-
-          <Pressable
-            onPress={() => navigation.navigate("ChefProfileSettings")}
-            style={styles.profileButton}
-          >
-            <Feather name="user" size={18} color={AppColors.white} />
-          </Pressable>
-        </View>
+        <Pressable
+          onPress={() => setIsOpen(!isOpen)}
+          style={[
+            styles.availabilityToggle,
+            { backgroundColor: isOpen ? AppColors.mintGreen : AppColors.terracotta },
+          ]}
+        >
+          <Feather
+            name={isOpen ? "check-circle" : "x-circle"}
+            size={14}
+            color={AppColors.white}
+          />
+        </Pressable>
       </View>
 
       {/* MAIN CONTENT */}
@@ -419,6 +442,9 @@ export default function ChefDashboardScreen({ navigation }: Props) {
           </Pressable>
         </View>
       </ScreenScrollView>
+
+      {/* BOTTOM NAVIGATION BAR */}
+      <BottomNavigationBar items={navItems} />
     </ThemedView>
   );
 }
@@ -467,25 +493,6 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.sm,
     borderRadius: BorderRadius.full,
     marginRight: Spacing.xs,
-  },
-  headerRightButtons: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginLeft: Spacing.sm,
-  },
-  profileButton: {
-    width: 38,
-    height: 38,
-    borderRadius: BorderRadius.full,
-    backgroundColor: AppColors.terracotta,
-    justifyContent: "center",
-    alignItems: "center",
-    marginLeft: Spacing.sm,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 3,
-    elevation: 3,
   },
 
   // ========== SUMMARY CARDS ==========
