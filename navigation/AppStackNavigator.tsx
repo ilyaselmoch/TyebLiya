@@ -57,6 +57,7 @@ export default function AppStackNavigator() {
 
   return (
     <Stack.Navigator
+      key={`stack-${user.role}`}
       initialRouteName={initialRoute}
       screenOptions={{
         ...getCommonScreenOptions({ theme, isDark }),
