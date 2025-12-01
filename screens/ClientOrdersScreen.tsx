@@ -143,9 +143,10 @@ export default function ClientOrdersScreen({ navigation }: Props) {
       <View style={styles.header}>
         <Pressable
           style={styles.backButton}
-          onPress={() => navigation.navigate("ClientHome")}
+          onPress={() => navigation.goBack()}
+          hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}
         >
-          <Feather name="arrow-left" size={24} color={AppColors.terracotta} />
+          <Feather name="arrow-left" size={28} color={AppColors.terracotta} />
         </Pressable>
         <ThemedText style={styles.headerTitle}>
           {cart.length > 0 ? "Cart & Orders" : "Your Orders"}
@@ -332,17 +333,19 @@ const styles = StyleSheet.create({
     gap: Spacing.md,
   },
   backButton: {
-    width: 44,
-    height: 44,
+    width: 50,
+    height: 50,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: AppColors.white,
     borderRadius: BorderRadius.full,
+    borderWidth: 2,
+    borderColor: AppColors.terracotta,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+    elevation: 5,
   },
   headerTitle: {
     flex: 1,
